@@ -11,6 +11,6 @@ CREATE TABLE videos (
  ) COMMENT="動画一覧";
 
 INSERT INTO videos (video_title, instructor, language, price, video_price) VALUES ('もう怖くないGit!', '山浦', 'Japanese', 'price-paid', 12000);
-INSERT INTO videos (video_title, instructor, language, price, video_price) VALUES ('もう怖くないLinuxコマンド', '田中', 'Japanese', 'price-paid', 12000);
+INSERT INTO videos (video_title, instructor, language, price, video_price) VALUES ('もう怖くないLinuxコマンド', '田中', 'Japanese', 'price-free', 0);
 INSERT INTO videos (video_title, instructor, language, price, video_price) VALUES ('Enjoy Programming', 'Jonny', 'English', 'price-free', 0);
-INSERT INTO videos (video_title, instructor, language, price, video_price) VALUES ('Java Programming 17', 'Mike', 'English', 'price-free', 0);
+INSERT INTO videos (video_title, instructor, language, price, video_price) VALUES ('Java Programming 17', 'Mike', 'English', 'price-paid', 12000);

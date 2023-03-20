@@ -25,9 +25,11 @@ public class VideoController {
     @GetMapping("/search/")
     public List<VideoResponse> findByLanguage(@RequestParam(value = "lang", required = false) String language,
                                               @RequestParam(value = "price", required = false) String price) {
-        if (language != null && price == null) {
+        if (language != null && price != null) {
+            return videoService.findByLanguageAndPrice(language, price).stream().map(VideoResponse::new).toList();
+        } else if (language != null) {
             return videoService.findByLanguage(language).stream().map(VideoResponse::new).toList();
-        } else if (price != null && language == null) {
+        } else if (price != null) {
             return videoService.findByPrice(price).stream().map(VideoResponse::new).toList();
         } else {
             return videoService.findAllVideos().stream().map(VideoResponse::new).toList();

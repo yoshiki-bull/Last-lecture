@@ -35,4 +35,9 @@ public class VideoServiceImpl implements VideoService {
     public List<Video> findByPrice(String price) {
         return videoMapper.findByPrice(price);
     }
+
+    @Override
+    public List<Video> findByLanguageAndPrice(String language, String price) {
+        return videoMapper.findByLanguageAndPrice(language, price);
+    }
 }
