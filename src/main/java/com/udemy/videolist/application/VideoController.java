@@ -17,12 +17,12 @@ public class VideoController {
         this.videoService = videoService;
     }
 
-    @GetMapping("/{videoId}")
-    public Optional<Video> findByVideoId(@PathVariable("videoId") int videoId) {
+    @GetMapping("/{id}")
+    public Optional<Video> findByVideoId(@PathVariable("id") int videoId) {
         return videoService.findByVideoId(videoId);
     }
 
-    @GetMapping("/search/")
+    @GetMapping("/search")
     public List<VideoResponse> findByLanguage(@RequestParam(value = "lang", required = false) String language,
                                               @RequestParam(value = "price", required = false) String price) {
         if (language != null && price != null) {
