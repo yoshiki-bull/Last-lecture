@@ -10,4 +10,6 @@ public interface VideoService {
     List<Video> findAllVideos();
 
     Optional<Video> findByVideoId(int videoId);
+
+    List<Video> findByLanguage(String language);
 }

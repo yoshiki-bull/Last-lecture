@@ -25,4 +25,9 @@ public class VideoServiceImpl implements VideoService {
     public Optional<Video> findByVideoId(int videoId) {
         return videoMapper.findByVideoId(videoId);
     }
+
+    @Override
+    public List<Video> findByLanguage(String language) {
+        return videoMapper.findByLanguage(language);
+    }
 }

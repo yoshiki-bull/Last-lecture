@@ -26,4 +26,9 @@ public class VideoController {
     public Optional<Video> findByVideoId(@PathVariable("videoId") int videoId) {
         return videoService.findByVideoId(videoId);
     }
+
+    @GetMapping("/search")
+    public List<VideoResponse> findByLanguage(@RequestParam(value = "lang", defaultValue = "Japanese") String language) {
+        return videoService.findByLanguage(language).stream().map((Video video) -> new VideoResponse(video)).toList();
+    }
 }
