@@ -12,4 +12,6 @@ public interface VideoService {
     Optional<Video> findByVideoId(int videoId);
 
     List<Video> findByLanguage(String language);
+
+    List<Video> findByPrice(String price);
 }
