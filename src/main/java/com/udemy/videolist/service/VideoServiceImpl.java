@@ -2,19 +2,17 @@ package com.udemy.videolist.service;
 
 import com.udemy.videolist.model.Video;
 import com.udemy.videolist.repository.VideoMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class VideoServiceImpl implements VideoService {
 
-    private VideoMapper videoMapper;
-
-    public VideoServiceImpl(VideoMapper videoMapper) {
-        this.videoMapper = videoMapper;
-    }
+    private final VideoMapper videoMapper;
 
     @Override
     public List<Video> findAllVideos() {

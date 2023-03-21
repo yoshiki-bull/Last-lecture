@@ -2,6 +2,7 @@ package com.udemy.videolist.application;
 
 import com.udemy.videolist.model.Video;
 import com.udemy.videolist.service.VideoService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -9,13 +10,10 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/videos")
+@RequiredArgsConstructor
 public class VideoController {
 
-    private VideoService videoService;
-
-    public VideoController(VideoService videoService) {
-        this.videoService = videoService;
-    }
+    private final VideoService videoService;
 
     @GetMapping("/{id}")
     public Optional<Video> findByVideoId(@PathVariable("id") int videoId) {
