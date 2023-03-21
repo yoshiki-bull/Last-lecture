@@ -4,27 +4,27 @@ public class Video {
 
     private int videoId;
 
-    private String videoTitle;
+    private String title;
 
     private String instructor;
 
-    private String videoLanguage;
+    private String language;
 
     private String price;
 
     private int videoPrice;
 
-    public Video(int videoId, String videoTitle, String instructor, String videoLanguage, String price, int videoPrice) {
+    public Video(int videoId, String title, String instructor, String language, String price, int videoPrice) {
         this.videoId = videoId;
-        this.videoTitle = videoTitle;
+        this.title = title;
         this.instructor = instructor;
-        this.videoLanguage = videoLanguage;
+        this.language = language;
         this.price = price;
         this.videoPrice = videoPrice;
     }
 
     public String getVideoTitle() {
-        return videoTitle;
+        return title;
     }
 
     public String getInstructor() {
@@ -32,7 +32,7 @@ public class Video {
     }
 
     public String getLanguage() {
-        return videoLanguage;
+        return language;
     }
 
     public int getVideoPrice() {

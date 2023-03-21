@@ -4,23 +4,23 @@ import com.udemy.videolist.model.Video;
 
 public class VideoResponse {
 
-    private String videoTitle;
+    private String title;
 
     private String instructor;
 
-    private String videoLanguage;
+    private String language;
 
     private int videoPrice;
 
     public VideoResponse(Video video) {
-        this.videoTitle = video.getVideoTitle();
+        this.title = video.getVideoTitle();
         this.instructor = video.getInstructor();
-        this.videoLanguage = video.getLanguage();
+        this.language = video.getLanguage();
         this.videoPrice = video.getVideoPrice();
     }
 
     public String getVideoTitle() {
-        return videoTitle;
+        return title;
     }
 
     public String getInstructor() {
@@ -28,7 +28,7 @@ public class VideoResponse {
     }
 
     public String getVideoLanguage() {
-        return videoLanguage;
+        return language;
     }
 
     public int getVideoPrice() {
