@@ -1,5 +1,10 @@
 package com.udemy.videolist.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@AllArgsConstructor
+@Getter
 public class Video {
 
     private int videoId;
@@ -13,29 +18,4 @@ public class Video {
     private String price;
 
     private int videoPrice;
-
-    public Video(int videoId, String title, String instructor, String language, String price, int videoPrice) {
-        this.videoId = videoId;
-        this.title = title;
-        this.instructor = instructor;
-        this.language = language;
-        this.price = price;
-        this.videoPrice = videoPrice;
-    }
-
-    public String getVideoTitle() {
-        return title;
-    }
-
-    public String getInstructor() {
-        return instructor;
-    }
-
-    public String getLanguage() {
-        return language;
-    }
-
-    public int getVideoPrice() {
-        return videoPrice;
-    }
 }
