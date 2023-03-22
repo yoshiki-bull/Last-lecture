@@ -2,7 +2,6 @@ package com.udemy.videolist.application;
 
 import com.udemy.videolist.model.Video;
 import com.udemy.videolist.service.VideoService;
-import com.udemy.videolist.service.exception.VideoNotFoundExceptionHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/videos")
 @RequiredArgsConstructor
-public class VideoController extends VideoNotFoundExceptionHandler {
+public class VideoController {
 
     private final VideoService videoService;
 

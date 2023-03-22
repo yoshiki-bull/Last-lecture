@@ -3,6 +3,7 @@ package com.udemy.videolist.service;
 import com.udemy.videolist.model.Video;
 import com.udemy.videolist.repository.VideoMapper;
 import com.udemy.videolist.service.exception.VideoNotFoundException;
+import com.udemy.videolist.service.exception.VideoNotFoundExceptionHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +11,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class VideoServiceImpl implements VideoService {
+public class VideoServiceImpl extends VideoNotFoundExceptionHandler implements VideoService {
 
     private final VideoMapper videoMapper;
 
