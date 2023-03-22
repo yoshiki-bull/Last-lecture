@@ -6,8 +6,6 @@ import java.util.List;
 
 public interface VideoService {
 
-    //List<Video> findAllVideos();
-
     Video findByVideoId(int id);
 
     List<Video> searchVideos(String language, String priceState);
