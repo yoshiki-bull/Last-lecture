@@ -16,27 +16,20 @@ public class VideoServiceImpl extends VideoNotFoundExceptionHandler implements V
     private final VideoMapper videoMapper;
 
     @Override
-    public List<Video> findAllVideos() {
-        return videoMapper.findAllVideos();
-    }
-
-    @Override
     public Video findByVideoId(int id) {
         return this.videoMapper.findByVideoId(id).orElseThrow(() -> new VideoNotFoundException("video not found"));
     }
 
     @Override
-    public List<Video> findByLanguage(String language) {
-        return videoMapper.findByLanguage(language);
-    }
-
-    @Override
-    public List<Video> findByPrice(String price) {
-        return videoMapper.findByPrice(price);
-    }
-
-    @Override
-    public List<Video> findByLanguageAndPrice(String language, String price) {
-        return videoMapper.findByLanguageAndPrice(language, price);
+    public List<Video> searchVideos(String language, String price) {
+        if (language != null && price != null) {
+            return videoMapper.findByLanguageAndPrice(language, price);
+        } else if (language != null) {
+            return videoMapper.findByLanguage(language);
+        } else if (price != null) {
+            return videoMapper.findByPrice(price);
+        } else {
+            return videoMapper.findAllVideos();
+        }
     }
 }
