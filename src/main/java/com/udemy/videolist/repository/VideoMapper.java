@@ -19,9 +19,9 @@ public interface VideoMapper {
     @Select("SELECT * FROM videos WHERE language = #{language}")
     List<Video> findByLanguage(String language);
 
-    @Select("SELECT * FROM videos WHERE price = #{price}")
+    @Select("SELECT * FROM videos WHERE price_state = #{priceState}")
     List<Video> findByPrice(String priceState);
 
-    @Select("SELECT * FROM videos WHERE language = #{language} AND price = #{price}")
+    @Select("SELECT * FROM videos WHERE language = #{language} AND price_state = #{priceState}")
     List<Video> findByLanguageAndPrice(String language, String priceState);
 }
