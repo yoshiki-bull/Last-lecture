@@ -3,7 +3,6 @@ package com.udemy.videolist.repository;
 import com.udemy.videolist.model.Video;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
