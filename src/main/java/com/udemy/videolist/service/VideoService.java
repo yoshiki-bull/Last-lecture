@@ -10,5 +10,5 @@ public interface VideoService {
 
     Video findByVideoId(int id);
 
-    List<Video> searchVideos(String language, String price);
+    List<Video> searchVideos(String language, String priceState);
 }

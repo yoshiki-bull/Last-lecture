@@ -15,7 +15,7 @@ public class Video {
 
     private String language;
 
-    private String price;
+    private String priceSate;
 
-    private int videoPrice;
+    private int price;
 }

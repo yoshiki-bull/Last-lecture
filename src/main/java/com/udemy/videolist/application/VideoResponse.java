@@ -12,12 +12,12 @@ public class VideoResponse {
 
     private String language;
 
-    private int videoPrice;
+    private int price;
 
     public VideoResponse(Video video) {
         this.title = video.getTitle();
         this.instructor = video.getInstructor();
         this.language = video.getLanguage();
-        this.videoPrice = video.getVideoPrice();
+        this.price = video.getPrice();
     }
 }
