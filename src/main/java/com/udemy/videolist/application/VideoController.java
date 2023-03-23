@@ -21,7 +21,7 @@ public class VideoController {
 
     @GetMapping("/search")
     public List<VideoResponse> searchVideos(@RequestParam(value = "lang", required = false) String language,
-                                            @RequestParam(value = "price", required = false) String priceState) {
-        return videoService.searchVideos(language, priceState).stream().map(VideoResponse::new).toList();
+                                            @RequestParam(value = "is_free", required = false) Boolean isFree) {
+        return videoService.searchVideos(language, isFree).stream().map(VideoResponse::new).toList();
     }
 }

@@ -21,13 +21,13 @@ public class VideoServiceImpl extends VideoNotFoundExceptionHandler implements V
     }
 
     @Override
-    public List<Video> searchVideos(String language, String priceState) {
-        if (language != null && priceState != null) {
-            return videoMapper.findByLanguageAndPrice(language, priceState);
+    public List<Video> searchVideos(String language, Boolean isFree) {
+        if (language != null && isFree != null) {
+            return videoMapper.findByLanguageAndPrice(language, isFree);
         } else if (language != null) {
             return videoMapper.findByLanguage(language);
-        } else if (priceState != null) {
-            return videoMapper.findByPrice(priceState);
+        } else if (isFree != null) {
+            return videoMapper.findByPrice(isFree);
         } else {
             return videoMapper.findAllVideos();
         }

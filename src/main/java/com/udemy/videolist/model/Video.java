@@ -15,7 +15,7 @@ public class Video {
 
     private String language;
 
-    private String priceSate;
+    private Boolean isFree;
 
     private int price;
 }

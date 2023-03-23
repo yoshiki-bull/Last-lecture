@@ -8,5 +8,5 @@ public interface VideoService {
 
     Video findByVideoId(int id);
 
-    List<Video> searchVideos(String language, String priceState);
+    List<Video> searchVideos(String language, Boolean isFree);
 }
