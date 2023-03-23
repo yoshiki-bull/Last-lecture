@@ -20,8 +20,8 @@ public interface VideoMapper {
     List<Video> findByLanguage(String language);
 
     @Select("SELECT * FROM videos WHERE is_free = #{isFree}")
-    List<Video> findByPrice(Boolean isFree);
+    List<Video> findByIsFree(Boolean isFree);
 
     @Select("SELECT * FROM videos WHERE language = #{language} AND is_free = #{isFree}")
-    List<Video> findByLanguageAndPrice(String language, Boolean isFree);
+    List<Video> findByLanguageAndIsFree(String language, Boolean isFree);
 }
