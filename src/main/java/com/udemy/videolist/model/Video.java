@@ -7,7 +7,7 @@ import lombok.Getter;
 @Getter
 public class Video {
 
-    private int videoId;
+    private int id;
 
     private String title;
 
