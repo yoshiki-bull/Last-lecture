@@ -2,7 +2,7 @@ package com.udemy.videolist.service;
 
 import com.udemy.videolist.model.Video;
 import com.udemy.videolist.repository.VideoMapper;
-import com.udemy.videolist.service.exception.VideoNotFoundException;
+import com.udemy.videolist.application.exception.VideoNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

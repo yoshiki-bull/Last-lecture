@@ -1,4 +1,4 @@
-package com.udemy.videolist.service.exception;
+package com.udemy.videolist.application.exception;
 
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
