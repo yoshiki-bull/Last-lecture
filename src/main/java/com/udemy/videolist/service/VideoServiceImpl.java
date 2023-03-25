@@ -16,7 +16,7 @@ public class VideoServiceImpl implements VideoService {
 
     @Override
     public Video findById(int id) {
-        return this.videoMapper.findByVideoId(id).orElseThrow(() -> new VideoNotFoundException(id));
+        return this.videoMapper.findById(id).orElseThrow(() -> new VideoNotFoundException(id));
     }
 
     @Override
