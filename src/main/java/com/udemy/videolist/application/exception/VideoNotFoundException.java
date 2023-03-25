@@ -10,8 +10,8 @@ public class VideoNotFoundException extends RuntimeException {
         super(message,cause);
     }
 
-    public VideoNotFoundException(String message) {
-        super(message);
+    public VideoNotFoundException(int id) {
+        super("ビデオID:" + id + "は見つかりませんでした");
     }
 
     public VideoNotFoundException(Throwable cause) {
