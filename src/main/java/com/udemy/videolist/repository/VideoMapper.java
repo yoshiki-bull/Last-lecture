@@ -1,7 +1,10 @@
 package com.udemy.videolist.repository;
 
+import com.udemy.videolist.application.form.CreateForm;
 import com.udemy.videolist.model.Video;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -24,4 +27,8 @@ public interface VideoMapper {
 
     @Select("SELECT * FROM videos WHERE language = #{language} AND is_free = #{isFree}")
     List<Video> findByLanguageAndIsFree(String language, Boolean isFree);
+
+    @Insert("INSERT INTO videos (title, instructor, language, is_free, price) VALUES (#{title}, #{instructor}, #{language}, #{isFree}, #{price})")
+    @Options(useGeneratedKeys = true, keyProperty = "id")
+    void createVideo(CreateForm form);
 }

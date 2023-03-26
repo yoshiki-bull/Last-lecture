@@ -1,5 +1,6 @@
 package com.udemy.videolist.service;
 
+import com.udemy.videolist.application.form.CreateForm;
 import com.udemy.videolist.model.Video;
 import com.udemy.videolist.repository.VideoMapper;
 import com.udemy.videolist.application.exception.VideoNotFoundException;
@@ -30,5 +31,10 @@ public class VideoServiceImpl implements VideoService {
         } else {
             return videoMapper.findAllVideos();
         }
+    }
+
+    @Override
+    public void createVideo(CreateForm form) {
+        videoMapper.createVideo(form);
     }
 }
