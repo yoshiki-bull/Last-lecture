@@ -31,6 +31,6 @@ public class CreateForm {
     private Boolean isFree;
 
     @NotNull(message = MESSAGE)
-    @Max(value = 999999999, message = "登録できるのは0～9桁までです")
+    @Max(value = 999999999, message = "登録できるのは0～9桁の整数までです")
     private int price;
 }
