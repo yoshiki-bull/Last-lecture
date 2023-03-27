@@ -1,8 +1,8 @@
 package com.udemy.videolist.application.form;
 
-import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 import org.hibernate.validator.constraints.Length;
 
@@ -31,6 +31,6 @@ public class CreateForm {
     private Boolean isFree;
 
     @NotNull(message = MESSAGE)
-    @Max(value = 999999999, message = "登録できるのは0～9桁の整数までです")
-    private int price;
+    @Pattern(regexp = "^\\d{0,9}+$", message = "数値を入力してください")
+    private String price;
 }

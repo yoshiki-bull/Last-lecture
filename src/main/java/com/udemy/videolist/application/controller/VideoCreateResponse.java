@@ -18,7 +18,7 @@ public class VideoCreateResponse {
 
     private Boolean isFree;
 
-    private int price;
+    private String price;
 
     protected VideoCreateResponse(CreateForm form) {
         this.message = "video successfully created";
