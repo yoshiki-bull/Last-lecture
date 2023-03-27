@@ -8,29 +8,24 @@ import org.hibernate.validator.constraints.Length;
 
 @Getter
 public class CreateForm {
-
-    private final String MESSAGE = "入力してください";
-
-    private final String LENGTH_MESSAGE = "100文字以内で入力してください";
-
     private int id;
 
-    @NotBlank(message = MESSAGE)
-    @Length(max = 100, message = LENGTH_MESSAGE)
+    @NotBlank(message = "{form.notblank}")
+    @Length(max = 100, message = "{form.title.length}")
     private String title;
 
-    @NotBlank(message = MESSAGE)
-    @Length(max = 100, message = LENGTH_MESSAGE)
+    @NotBlank(message = "{form.notblank}")
+    @Length(max = 100, message = "{form.instructor.length}")
     private String instructor;
 
-    @NotBlank(message = MESSAGE)
-    @Length(max = 100, message = LENGTH_MESSAGE)
+    @NotBlank(message = "{form.notblank}")
+    @Length(max = 100, message = "{form.language.length}")
     private String language;
 
-    @NotNull(message = MESSAGE)
+    @NotNull(message = "{form.notnull}")
     private Boolean isFree;
 
-    @NotNull(message = MESSAGE)
-    @Pattern(regexp = "^\\d{0,9}+$", message = "数値を入力してください")
+    @NotBlank(message = "{form.notblank}")
+    @Pattern(regexp = "^\\d{0,9}+$", message = "{form.price.pattern}")
     private String price;
 }
