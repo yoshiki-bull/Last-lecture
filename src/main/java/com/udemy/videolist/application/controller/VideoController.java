@@ -1,12 +1,14 @@
 package com.udemy.videolist.application.controller;
 
 import com.udemy.videolist.application.form.CreateForm;
+import com.udemy.videolist.application.form.UpdateForm;
 import com.udemy.videolist.model.Video;
 import com.udemy.videolist.service.VideoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -43,5 +45,11 @@ public class VideoController {
                 .build()
                 .toUri();
         return ResponseEntity.created(uri).body(new VideoCreateResponse(form));
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<VideoUpdateResponse> updateVideo(@PathVariable("id") int id, @RequestBody  @Validated UpdateForm form) {
+        videoService.updateVideo(id, form);
+        return ResponseEntity.ok(new VideoUpdateResponse(form));
     }
 }

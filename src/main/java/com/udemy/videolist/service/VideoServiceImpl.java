@@ -1,6 +1,7 @@
 package com.udemy.videolist.service;
 
 import com.udemy.videolist.application.form.CreateForm;
+import com.udemy.videolist.application.form.UpdateForm;
 import com.udemy.videolist.model.Video;
 import com.udemy.videolist.repository.VideoMapper;
 import com.udemy.videolist.application.exception.VideoNotFoundException;
@@ -36,5 +37,10 @@ public class VideoServiceImpl implements VideoService {
     @Override
     public void createVideo(CreateForm form) {
         videoMapper.createVideo(form);
+    }
+
+    @Override
+    public void updateVideo(int id, UpdateForm form) {
+        videoMapper.updateVideo(id, form);
     }
 }
