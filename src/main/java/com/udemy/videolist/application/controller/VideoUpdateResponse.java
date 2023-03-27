@@ -1,8 +1,9 @@
 package com.udemy.videolist.application.controller;
 
 import com.udemy.videolist.application.form.UpdateForm;
-import com.udemy.videolist.model.Video;
+import lombok.Getter;
 
+@Getter
 public class VideoUpdateResponse {
 
     private String message;
