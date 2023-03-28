@@ -6,7 +6,7 @@ CREATE TABLE videos (
   instructor VARCHAR(100) NOT NULL COMMENT "作者",
   language VARCHAR(100) NOT NULL COMMENT "動画の言語",
   is_free BOOLEAN NOT NULL COMMENT "有料か無料か",
-  price INT(10) NOT NULL COMMENT "動画の値段",
+  price INT(9) NOT NULL COMMENT "動画の値段",
   PRIMARY KEY(id)
  ) COMMENT="動画一覧";
 
