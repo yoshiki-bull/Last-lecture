@@ -3,6 +3,7 @@ package com.udemy.videolist.repository;
 import com.udemy.videolist.application.form.CreateForm;
 import com.udemy.videolist.application.form.UpdateForm;
 import com.udemy.videolist.model.Video;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Options;
@@ -36,4 +37,7 @@ public interface VideoMapper {
 
     @Update("UPDATE videos SET title = #{form.title}, instructor = #{form.instructor}, language = #{form.language}, is_free = #{form.isFree}, price = #{form.price} WHERE id = #{id}")
     void updateVideo(int id, UpdateForm form);
+
+    @Delete("DELETE FROM videos WHERE id = #{id}")
+    void deleteVideo(int id);
 }

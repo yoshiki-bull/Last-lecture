@@ -43,4 +43,9 @@ public class VideoServiceImpl implements VideoService {
     public void updateVideo(int id, UpdateForm form) {
         videoMapper.updateVideo(id, form);
     }
+
+    @Override
+    public void deleteVideo(int id) {
+        videoMapper.deleteVideo(id);
+    }
 }

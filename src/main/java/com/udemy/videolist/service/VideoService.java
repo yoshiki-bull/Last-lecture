@@ -15,4 +15,6 @@ public interface VideoService {
     void createVideo(CreateForm form);
 
     void updateVideo(int id, UpdateForm form);
+
+    void deleteVideo(int id);
 }
