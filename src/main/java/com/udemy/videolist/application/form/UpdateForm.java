@@ -9,8 +9,6 @@ import org.hibernate.validator.constraints.Length;
 @Getter
 public class UpdateForm {
 
-        private int id;
-
         @NotBlank(message = "{form.notblank}")
         @Length(max = 100, message = "{form.title.length}")
         private String title;

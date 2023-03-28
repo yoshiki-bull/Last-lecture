@@ -8,8 +8,6 @@ public class VideoUpdateResponse {
 
     private String message;
 
-    private int id;
-
     private String title;
 
     private String instructor;
@@ -22,7 +20,6 @@ public class VideoUpdateResponse {
 
     protected VideoUpdateResponse(UpdateForm form) {
         this.message = "video successfully updated";
-        this.id = form.getId();
         this.title = form.getTitle();
         this.instructor = form.getInstructor();
         this.language = form.getLanguage();
