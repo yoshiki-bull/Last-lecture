@@ -3,18 +3,17 @@ package com.udemy.videolist.service;
 import com.udemy.videolist.application.form.CreateForm;
 import com.udemy.videolist.application.form.UpdateForm;
 import com.udemy.videolist.model.Video;
-
 import java.util.List;
 
 public interface VideoService {
 
-    Video findById(int id);
+  Video findById(int id);
 
-    List<Video> searchVideos(String language, Boolean isFree);
+  List<Video> searchVideos(String language, Boolean isFree);
 
-    void createVideo(CreateForm form);
+  void createVideo(CreateForm form);
 
-    void updateVideo(int id, UpdateForm form);
+  void updateVideo(int id, UpdateForm form);
 
-    void deleteVideo(int id);
+  void deleteVideo(int id);
 }

@@ -9,22 +9,22 @@ import org.hibernate.validator.constraints.Length;
 @Getter
 public class UpdateForm {
 
-        @NotBlank(message = "{form.notblank}")
-        @Length(max = 100, message = "{form.title.length}")
-        private String title;
+  @NotBlank(message = "{form.notblank}")
+  @Length(max = 100, message = "{form.title.length}")
+  private String title;
 
-        @NotBlank(message = "{form.notblank}")
-        @Length(max = 100, message = "{form.instructor.length}")
-        private String instructor;
+  @NotBlank(message = "{form.notblank}")
+  @Length(max = 100, message = "{form.instructor.length}")
+  private String instructor;
 
-        @NotBlank(message = "{form.notblank}")
-        @Length(max = 100, message = "{form.language.length}")
-        private String language;
+  @NotBlank(message = "{form.notblank}")
+  @Length(max = 100, message = "{form.language.length}")
+  private String language;
 
-        @NotNull(message = "{form.notnull}")
-        private Boolean isFree;
+  @NotNull(message = "{form.notnull}")
+  private Boolean isFree;
 
-        @NotBlank(message = "{form.notblank}")
-        @Pattern(regexp = "^\\d{0,9}+$", message = "{form.price.pattern}")
-        private String price;
+  @NotBlank(message = "{form.notblank}")
+  @Pattern(regexp = "^\\d{0,9}+$", message = "{form.price.pattern}")
+  private String price;
 }

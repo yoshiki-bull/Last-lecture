@@ -6,27 +6,29 @@ import lombok.Getter;
 @Getter
 public class VideoCreateResponse {
 
-    private String message;
+  private String message;
 
-    private int id;
+  private int id;
 
-    private String title;
+  private String title;
 
-    private String instructor;
+  private String instructor;
 
-    private String language;
+  private String language;
 
-    private Boolean isFree;
+  private Boolean isFree;
 
-    private String price;
+  private String price;
 
-    protected VideoCreateResponse(CreateForm form) {
-        this.message = "video successfully created";
-        this.id = form.getId();
-        this.title = form.getTitle();
-        this.instructor = form.getInstructor();
-        this.language = form.getLanguage();
-        this.isFree = form.getIsFree();
-        this.price = form.getPrice();
-    };
+  protected VideoCreateResponse(CreateForm form) {
+    this.message = "video successfully created";
+    this.id = form.getId();
+    this.title = form.getTitle();
+    this.instructor = form.getInstructor();
+    this.language = form.getLanguage();
+    this.isFree = form.getIsFree();
+    this.price = form.getPrice();
+  }
+
+  ;
 }

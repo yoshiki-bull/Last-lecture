@@ -4,6 +4,8 @@ import com.udemy.videolist.application.form.CreateForm;
 import com.udemy.videolist.application.form.UpdateForm;
 import com.udemy.videolist.model.Video;
 import com.udemy.videolist.service.VideoService;
+import java.net.URI;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -18,45 +20,45 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import java.net.URI;
-import java.util.List;
-
 @RestController
 @RequestMapping("/videos")
 @RequiredArgsConstructor
 public class VideoController {
 
-    private final VideoService videoService;
+  private final VideoService videoService;
 
-    @GetMapping("/{id}")
-    public Video findById(@PathVariable("id") int id) {
-        return videoService.findById(id);
-    }
+  @GetMapping("/{id}")
+  public Video findById(@PathVariable("id") int id) {
+    return videoService.findById(id);
+  }
 
-    @GetMapping("/search")
-    public List<VideoResponse> searchVideos(@RequestParam(value = "lang", required = false) String language,
-                                            @RequestParam(value = "is_free", required = false) Boolean isFree) {
-        return videoService.searchVideos(language, isFree).stream().map(VideoResponse::new).toList();
-    }
+  @GetMapping("/search")
+  public List<VideoResponse> searchVideos(
+      @RequestParam(value = "lang", required = false) String language,
+      @RequestParam(value = "is_free", required = false) Boolean isFree) {
+    return videoService.searchVideos(language, isFree).stream().map(VideoResponse::new).toList();
+  }
 
-    @PostMapping
-    public ResponseEntity<VideoCreateResponse> createVideo(@RequestBody @Validated CreateForm form, UriComponentsBuilder builder) {
-        videoService.createVideo(form);
-        URI uri = builder.path("/videos/" + form.getId())
-                .build()
-                .toUri();
-        return ResponseEntity.created(uri).body(new VideoCreateResponse(form));
-    }
+  @PostMapping
+  public ResponseEntity<VideoCreateResponse> createVideo(@RequestBody @Validated CreateForm form,
+                                                         UriComponentsBuilder builder) {
+    videoService.createVideo(form);
+    URI uri = builder.path("/videos/" + form.getId())
+        .build()
+        .toUri();
+    return ResponseEntity.created(uri).body(new VideoCreateResponse(form));
+  }
 
-    @PatchMapping("/{id}")
-    public ResponseEntity<VideoUpdateResponse> updateVideo(@PathVariable("id") int id, @RequestBody  @Validated UpdateForm form) {
-        videoService.updateVideo(id, form);
-        return ResponseEntity.ok(new VideoUpdateResponse(form));
-    }
+  @PatchMapping("/{id}")
+  public ResponseEntity<VideoUpdateResponse> updateVideo(@PathVariable("id") int id,
+                                                         @RequestBody @Validated UpdateForm form) {
+    videoService.updateVideo(id, form);
+    return ResponseEntity.ok(new VideoUpdateResponse(form));
+  }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Video> deleteVideo(@PathVariable("id") int id) {
-        videoService.deleteVideo(id);
-        return ResponseEntity.noContent().build();
-    }
+  @DeleteMapping("/{id}")
+  public ResponseEntity<Video> deleteVideo(@PathVariable("id") int id) {
+    videoService.deleteVideo(id);
+    return ResponseEntity.noContent().build();
+  }
 }

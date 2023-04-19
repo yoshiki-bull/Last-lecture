@@ -7,15 +7,15 @@ import lombok.Getter;
 @Getter
 public class Video {
 
-    private int id;
+  private int id;
 
-    private String title;
+  private String title;
 
-    private String instructor;
+  private String instructor;
 
-    private String language;
+  private String language;
 
-    private Boolean isFree;
+  private Boolean isFree;
 
-    private int price;
+  private int price;
 }
