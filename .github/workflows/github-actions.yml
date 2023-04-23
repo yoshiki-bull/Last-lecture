@@ -26,8 +26,7 @@ jobs:
       - name: Docker run
         run: docker compose up -d
 
-      - name: Grant execute permission to gradlew
-        run: chmod +x gradlew
+
 
       - name: Test with Gradle
         id: test
@@ -67,15 +66,6 @@ jobs:
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
         if: always()
-
-      - name: Discord Message Notify
-        uses: appleboy/discord-action@0.0.3
-        with:
-          webhook_id: ${{ secrets.WEBHOOK_ID }}
-          webhook_token: ${{ secrets.WEBHOOK_TOKEN }}
-          color: "#48f442"
-          username: "GitHub Bot"
-          args: "The ${{ github.event_name }} event triggered."
 
       - uses: sarisia/actions-status-discord@v1
         if: always()
