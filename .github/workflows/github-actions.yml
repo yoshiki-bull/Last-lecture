@@ -77,5 +77,5 @@ jobs:
           title: "Continuous Integration"
           description: "Build to GitHub Pages"
           color: "#48f442"
-          url: "https://github.com/yoshiki-bull/Raisetech-lecture10/actions"
+          url: "https://github.com/sarisia/actions-status-discord"
           username: GitHub Actions
