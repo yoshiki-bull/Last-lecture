@@ -76,3 +76,15 @@ jobs:
           color: "#48f442"
           username: "GitHub Bot"
           args: "The ${{ github.event_name }} event triggered."
+
+      - uses: sarisia/actions-status-discord@v1
+        if: always()
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          status: ${{ job.status }}
+          content: "Hey <@Yoshiki (Java/2022.12)#3563>"
+          title: "Continuous Integration"
+          description: "Build to GitHub Pages"
+          color: "#48f442"
+          url: "https://github.com/yoshiki-bull/Raisetech-lecture10/actions"
+          username: GitHub Actions
