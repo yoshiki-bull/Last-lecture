@@ -7,6 +7,7 @@ import static org.mockito.Mockito.doReturn;
 import com.udemy.videolist.application.exception.VideoNotFoundException;
 import com.udemy.videolist.model.Video;
 import com.udemy.videolist.repository.VideoMapper;
+import java.util.List;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -25,6 +26,9 @@ class VideoServiceImplTest {
 
   Video video = new Video(1, "もう怖くないGit!", "山浦", "Japanese", false, 12000);
 
+  List<Video> videoList = List.of(new Video(1, "もう怖くないGit!", "山浦", "Japanese", false, 12000),
+      new Video(2, "Enjoy Programming", "Jonny", "English", true, 0));
+
   @Test
   public void 存在するIDのビデオが正常に取得できること() throws Exception {
 
@@ -41,5 +45,13 @@ class VideoServiceImplTest {
     assertThatThrownBy(() -> videoServiceimpl.findById(1))
         .isInstanceOf(VideoNotFoundException.class)
         .hasMessage("ビデオID:1は見つかりませんでした");
+  }
+
+  @Test
+  public void ビデオが全件取得できること() {
+    doReturn(videoList).when(videoMapper).findAllVideos();
+
+    List<Video> actual = videoServiceimpl.searchVideos(null, null);
+    assertThat(actual).isEqualTo(videoList);
   }
 }
