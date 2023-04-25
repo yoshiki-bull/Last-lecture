@@ -40,11 +40,13 @@ public class VideoServiceImpl implements VideoService {
 
   @Override
   public void updateVideo(int id, UpdateForm form) {
+    videoMapper.findById(id).orElseThrow(() -> new VideoNotFoundException(id));
     videoMapper.updateVideo(id, form);
   }
 
   @Override
   public void deleteVideo(int id) {
+    videoMapper.findById(id).orElseThrow(() -> new VideoNotFoundException(id));
     videoMapper.deleteVideo(id);
   }
 }
