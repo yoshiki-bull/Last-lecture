@@ -3,6 +3,7 @@ package com.udemy.videolist.service;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.times;
@@ -46,6 +47,9 @@ class VideoServiceImplTest {
       List.of(new Video(1, "もう怖くないGit!", "山浦", "Japanese", false, 10000),
           new Video(2, "もう怖くないGit!", "山浦", "Japanese", false, 10000));
 
+  CreateForm createForm = new CreateForm();
+  UpdateForm updateForm = new UpdateForm();
+
   @Test
   public void 存在するIDのビデオが正常に取得できること() throws Exception {
 
@@ -61,8 +65,9 @@ class VideoServiceImplTest {
   public void 存在しないビデオ情報のIDを指定した場合VideoNotFoundExceptionがthrowされること() {
     doReturn(Optional.empty()).when(videoMapper).findById(1);
 
-    assertThatThrownBy(() -> videoServiceImpl.findById(1)).isInstanceOf(
-        VideoNotFoundException.class).hasMessage("ビデオID:1は見つかりませんでした");
+    assertThatThrownBy(() -> videoServiceImpl.findById(1))
+        .isInstanceOf(VideoNotFoundException.class)
+        .hasMessage("ビデオID:1は見つかりませんでした");
 
     verify(videoMapper, times(1)).findById(1);
   }
@@ -119,9 +124,46 @@ class VideoServiceImplTest {
 
   @Test
   public void ビデオが登録できること() {
-    doNothing().when(videoMapper).createVideo(any(CreateForm.class));
+    doNothing().when(videoMapper).createVideo(createForm);
 
-    videoServiceImpl.createVideo(new CreateForm());
-    verify(videoMapper).createVideo(any(CreateForm.class));
+    videoServiceImpl.createVideo(createForm);
+    verify(videoMapper).createVideo(createForm);
+  }
+
+  @Test
+  public void ビデオが更新できること() throws Exception {
+    doReturn(Optional.of(video)).when(videoMapper).findById(1);
+
+    videoServiceImpl.updateVideo(1, updateForm);
+    verify(videoMapper).updateVideo(1, updateForm);
+    verify(videoMapper).findById(1);
+  }
+
+  @Test
+  public void 更新対象のビデオが存在しない場合VideoNotFoundExceptionがthrowされること() {
+    doReturn(Optional.empty()).when(videoMapper).findById(1);
+
+    assertThatThrownBy(() -> videoServiceImpl.updateVideo(1, updateForm))
+        .isInstanceOf(VideoNotFoundException.class)
+        .hasMessage("ビデオID:1は見つかりませんでした");
+    verify(videoMapper).findById(1);
+  }
+
+  @Test
+  public void ビデオが削除できること() throws Exception {
+    doReturn(Optional.of(video)).when(videoMapper).findById(1);
+
+    videoServiceImpl.deleteVideo(1);
+    verify(videoMapper).findById(1);
+  }
+
+  @Test
+  public void 削除対象のビデオが存在しない場合VideoNotFoundExceptionがthrowされること() {
+    doReturn(Optional.empty()).when(videoMapper).findById(1);
+
+    assertThatThrownBy(() -> videoServiceImpl.deleteVideo(1))
+        .isInstanceOf(VideoNotFoundException.class)
+        .hasMessage("ビデオID:1は見つかりませんでした");
+    verify(videoMapper).findById(1);
   }
 }
