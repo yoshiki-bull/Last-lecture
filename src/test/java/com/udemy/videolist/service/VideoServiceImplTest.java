@@ -54,78 +54,63 @@ class VideoServiceImplTest {
   public void 存在するIDのビデオが正常に取得できること() throws Exception {
 
     doReturn(Optional.of(video)).when(videoMapper).findById(1);
-
     Video actual = videoServiceImpl.findById(1);
     assertThat(actual).isEqualTo(video);
-
     verify(videoMapper, times(1)).findById(1);
   }
 
   @Test
   public void 存在しないビデオ情報のIDを指定した場合VideoNotFoundExceptionがthrowされること() {
     doReturn(Optional.empty()).when(videoMapper).findById(1);
-
     assertThatThrownBy(() -> videoServiceImpl.findById(1))
         .isInstanceOf(VideoNotFoundException.class)
         .hasMessage("ビデオID:1は見つかりませんでした");
-
     verify(videoMapper, times(1)).findById(1);
   }
 
   @Test
   public void ビデオが全件取得できること() {
     doReturn(allVideoList).when(videoMapper).findAllVideos();
-
     List<Video> actual = videoServiceImpl.searchVideos(null, null);
     assertThat(actual).isEqualTo(allVideoList);
-
     verify(videoMapper, times(1)).findAllVideos();
   }
 
   @Test
   public void 指定した言語と無料のビデオリストが取得できること() {
     doReturn(freeVideoList).when(videoMapper).findByLanguageAndIsFree("Japanese", true);
-
     List<Video> actual = videoServiceImpl.searchVideos("Japanese", true);
     assertThat(actual).isEqualTo(freeVideoList);
-
     verify(videoMapper).findByLanguageAndIsFree("Japanese", true);
   }
 
   @Test
   public void 指定した言語と有料のビデオリストが取得できること() {
     doReturn(notFreeVideoList).when(videoMapper).findByLanguageAndIsFree("Japanese", false);
-
     List<Video> actual = videoServiceImpl.searchVideos("Japanese", false);
     assertThat(actual).isEqualTo(notFreeVideoList);
-
     verify(videoMapper).findByLanguageAndIsFree("Japanese", false);
   }
 
   @Test
   public void 料金は指定せずに指定した言語のビデオリストが取得できること() {
     doReturn(japaneseVideoList).when(videoMapper).findByLanguage("Japanese");
-
     List<Video> actual = videoServiceImpl.searchVideos("Japanese", null);
     assertThat(actual).isEqualTo(japaneseVideoList);
-
     verify(videoMapper).findByLanguage("Japanese");
   }
 
   @Test
   public void 言語は指定せずに無料のビデオリストが取得できること() {
     doReturn(freeVideoList).when(videoMapper).findByIsFree(true);
-
     List<Video> actual = videoServiceImpl.searchVideos(null, true);
     assertThat(actual).isEqualTo(freeVideoList);
-
     verify(videoMapper).findByIsFree(true);
   }
 
   @Test
   public void ビデオが登録できること() {
     doNothing().when(videoMapper).createVideo(createForm);
-
     videoServiceImpl.createVideo(createForm);
     verify(videoMapper).createVideo(createForm);
   }
@@ -133,7 +118,6 @@ class VideoServiceImplTest {
   @Test
   public void ビデオが更新できること() throws Exception {
     doReturn(Optional.of(video)).when(videoMapper).findById(1);
-
     videoServiceImpl.updateVideo(1, updateForm);
     verify(videoMapper).updateVideo(1, updateForm);
     verify(videoMapper).findById(1);
@@ -142,7 +126,6 @@ class VideoServiceImplTest {
   @Test
   public void 更新対象のビデオが存在しない場合VideoNotFoundExceptionがthrowされること() {
     doReturn(Optional.empty()).when(videoMapper).findById(1);
-
     assertThatThrownBy(() -> videoServiceImpl.updateVideo(1, updateForm))
         .isInstanceOf(VideoNotFoundException.class)
         .hasMessage("ビデオID:1は見つかりませんでした");
@@ -152,7 +135,6 @@ class VideoServiceImplTest {
   @Test
   public void ビデオが削除できること() throws Exception {
     doReturn(Optional.of(video)).when(videoMapper).findById(1);
-
     videoServiceImpl.deleteVideo(1);
     verify(videoMapper).findById(1);
   }
@@ -160,7 +142,6 @@ class VideoServiceImplTest {
   @Test
   public void 削除対象のビデオが存在しない場合VideoNotFoundExceptionがthrowされること() {
     doReturn(Optional.empty()).when(videoMapper).findById(1);
-
     assertThatThrownBy(() -> videoServiceImpl.deleteVideo(1))
         .isInstanceOf(VideoNotFoundException.class)
         .hasMessage("ビデオID:1は見つかりませんでした");
