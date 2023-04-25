@@ -3,6 +3,8 @@ package com.udemy.videolist.service;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThatThrownBy;
 import static org.mockito.Mockito.doReturn;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 import com.udemy.videolist.application.exception.VideoNotFoundException;
 import com.udemy.videolist.model.Video;
@@ -36,6 +38,8 @@ class VideoServiceImplTest {
 
     Video actual = videoServiceimpl.findById(1);
     assertThat(actual).isEqualTo(video);
+
+    verify(videoMapper, times(1)).findById(1);
   }
 
   @Test
@@ -45,6 +49,8 @@ class VideoServiceImplTest {
     assertThatThrownBy(() -> videoServiceimpl.findById(1))
         .isInstanceOf(VideoNotFoundException.class)
         .hasMessage("ビデオID:1は見つかりませんでした");
+
+    verify(videoMapper, times(1)).findById(1);
   }
 
   @Test
@@ -53,5 +59,7 @@ class VideoServiceImplTest {
 
     List<Video> actual = videoServiceimpl.searchVideos(null, null);
     assertThat(actual).isEqualTo(videoList);
+
+    verify(videoMapper, times(1)).findAllVideos();
   }
 }
