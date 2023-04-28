@@ -4,6 +4,6 @@ properties:
   schema: video_list
 caseInsensitiveStrategy: LOWERCASE
 connectionConfig:
-  url: "jdbc:mysql://localhost:3306/video_list"
+  url: "jdbc:mysql://localhost:3307/video_list"
   user: "user"
   password: "pass"
