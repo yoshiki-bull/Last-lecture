@@ -12,5 +12,5 @@ CREATE TABLE videos (
 
 INSERT INTO videos (title, instructor, language, is_free, price) VALUES ('もう怖くないGit!', '山浦', 'Japanese', false, 12000);
 INSERT INTO videos (title, instructor, language, is_free, price) VALUES ('もう怖くないLinuxコマンド', '田中', 'Japanese', true, 0);
-INSERT INTO videos (title, instructor, language, is_free, price) VALUES ('Enjoy Programming', 'Jonny', 'English', true, 0);
-INSERT INTO videos (title, instructor, language, is_free, price) VALUES ('Java Programming 17', 'Mike', 'English', false, 12000);
+INSERT INTO videos (title, instructor, language, is_free, price) VALUES ('The Web Developer Bootcamp', 'Colt', 'English', false, 12000);
+INSERT INTO videos (title, instructor, language, is_free, price) VALUES ('Java Programming 17', 'Mike', 'English', true, 0);

@@ -1,0 +1,14 @@
+videos:
+  - id: 1
+    title: "もう怖くないGit!"
+    instructor: "山浦"
+    language: "Japanese"
+    isFree: false
+    price: 12000
+
+  - id: 2
+    title: "The Web Developer Bootcamp"
+    instructor: "Colt"
+    language: "English"
+    isFree: false
+    price: 12000
