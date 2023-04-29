@@ -1,6 +1,5 @@
 package com.udemy.videolist.service;
 
-import com.udemy.videolist.application.form.UpdateForm;
 import com.udemy.videolist.model.Video;
 import java.util.List;
 
@@ -10,9 +9,9 @@ public interface VideoService {
 
   List<Video> searchVideos(String language, Boolean isFree);
 
-  Video createVideo(String title, String instructor, String language, Boolean isFree, int price);
+  Video createVideo(Video video);
 
-  void updateVideo(int id, UpdateForm form);
+  void updateVideo(int id, Video video);
 
   void deleteVideo(int id);
 }

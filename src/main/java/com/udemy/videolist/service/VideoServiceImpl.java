@@ -1,7 +1,6 @@
 package com.udemy.videolist.service;
 
 import com.udemy.videolist.application.exception.VideoNotFoundException;
-import com.udemy.videolist.application.form.UpdateForm;
 import com.udemy.videolist.model.Video;
 import com.udemy.videolist.repository.VideoMapper;
 import java.util.List;
@@ -33,17 +32,16 @@ public class VideoServiceImpl implements VideoService {
   }
 
   @Override
-  public Video createVideo(String title, String instructor, String language, Boolean isFree, int price) {
-    Video video = new Video(title, instructor, language, isFree, price);
+  public Video createVideo(Video video) {
     videoMapper.createVideo(video);
 
     return video;
   }
 
   @Override
-  public void updateVideo(int id, UpdateForm form) {
+  public void updateVideo(int id, Video video) {
     videoMapper.findById(id).orElseThrow(() -> new VideoNotFoundException(id));
-    videoMapper.updateVideo(id, form);
+    videoMapper.updateVideo(id, video);
   }
 
   @Override

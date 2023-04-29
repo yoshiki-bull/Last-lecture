@@ -1,30 +1,30 @@
 package com.udemy.videolist.application.controller;
 
-import com.udemy.videolist.application.form.UpdateForm;
+import com.udemy.videolist.model.Video;
 import lombok.Getter;
 
 @Getter
 public class VideoUpdateResponse {
 
-  private String message;
+  private final String message;
 
-  private String title;
+  private final String title;
 
-  private String instructor;
+  private final String instructor;
 
-  private String language;
+  private final String language;
 
-  private Boolean isFree;
+  private final Boolean isFree;
 
-  private String price;
+  private final int price;
 
-  protected VideoUpdateResponse(UpdateForm form) {
+  protected VideoUpdateResponse(Video video) {
     this.message = "video successfully updated";
-    this.title = form.getTitle();
-    this.instructor = form.getInstructor();
-    this.language = form.getLanguage();
-    this.isFree = form.getIsFree();
-    this.price = form.getPrice();
+    this.title = video.getTitle();
+    this.instructor = video.getInstructor();
+    this.language = video.getLanguage();
+    this.isFree = video.getIsFree();
+    this.price = video.getPrice();
   }
 
   ;

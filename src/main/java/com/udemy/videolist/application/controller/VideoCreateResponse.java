@@ -20,7 +20,7 @@ public class VideoCreateResponse {
 
   private final int price;
 
-  protected VideoCreateResponse(Video video) {
+  public VideoCreateResponse(Video video) {
     this.message = "video successfully created";
     this.id = video.getId();
     this.title = video.getTitle();

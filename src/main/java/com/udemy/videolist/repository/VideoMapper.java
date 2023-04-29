@@ -1,6 +1,5 @@
 package com.udemy.videolist.repository;
 
-import com.udemy.videolist.application.form.UpdateForm;
 import com.udemy.videolist.model.Video;
 import java.util.List;
 import java.util.Optional;
@@ -33,8 +32,8 @@ public interface VideoMapper {
   @Options(useGeneratedKeys = true, keyProperty = "id")
   void createVideo(Video video);
 
-  @Update("UPDATE videos SET title = #{form.title}, instructor = #{form.instructor}, language = #{form.language}, is_free = #{form.isFree}, price = #{form.price} WHERE id = #{id}")
-  void updateVideo(int id, UpdateForm form);
+  @Update("UPDATE videos SET title = #{video.title}, instructor = #{video.instructor}, language = #{video.language}, is_free = #{video.isFree}, price = #{video.price} WHERE id = #{id}")
+  void updateVideo(int id, Video video);
 
   @Delete("DELETE FROM videos WHERE id = #{id}")
   void deleteVideo(int id);

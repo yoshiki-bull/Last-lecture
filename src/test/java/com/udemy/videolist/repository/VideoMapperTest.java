@@ -66,9 +66,9 @@ class VideoMapperTest {
   }
 
   @Test
-  @DataSet(value = "videoList.yml")
-  @ExpectedDataSet(value = "expectedAfterInsertVideo.yml", ignoreCols = "id")
   @Transactional
+  @DataSet(value = "videoList.yml")
+  @ExpectedDataSet(value = "expectedAfterInsertVideo.yml")
   void DBに新規ビデオが登録された際にidが自動で増加的に採番されること() {
     Video video3 = new Video("もう怖くないLinux", "山浦", "Japanese", true, 0);
     assertThat(video3.getId()).isNull();
@@ -83,5 +83,15 @@ class VideoMapperTest {
     assertThat(video4.getId()).isNotNull();
 
     assertThat(video4.getId()).isGreaterThan(video3.getId());
+  }
+
+  @Test
+  @Transactional
+  @DataSet(value = "videoList.yml")
+  @ExpectedDataSet(value = "expectedAfterUpdate.yml")
+  void 指定したidのビデオ情報が更新できること() {
+    Video video = new Video("Mockito", "Mike", "English", true, 0);
+
+    videoMapper.updateVideo(1, video);
   }
 }
