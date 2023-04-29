@@ -9,7 +9,6 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import com.udemy.videolist.application.exception.VideoNotFoundException;
-import com.udemy.videolist.application.form.CreateForm;
 import com.udemy.videolist.application.form.UpdateForm;
 import com.udemy.videolist.model.Video;
 import com.udemy.videolist.repository.VideoMapper;
@@ -119,12 +118,12 @@ class VideoServiceImplTest {
 
   @Test
   public void ビデオが登録できること() {
-    CreateForm createForm = new CreateForm();
+    Video video = new Video("もう怖くないGit!", "山浦", "Japanese", false, 12000);
 
-    doNothing().when(videoMapper).createVideo(createForm);
+    doNothing().when(videoMapper).createVideo(video);
 
-    videoServiceImpl.createVideo(createForm);
-    verify(videoMapper).createVideo(createForm);
+    videoServiceImpl.createVideo("もう怖くないGit!", "山浦", "Japanese", false, 12000);
+    verify(videoMapper).createVideo(video);
   }
 
   @Test

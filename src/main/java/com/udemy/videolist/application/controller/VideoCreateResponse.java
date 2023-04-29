@@ -6,19 +6,19 @@ import lombok.Getter;
 @Getter
 public class VideoCreateResponse {
 
-  private String message;
+  private final String message;
 
-  private int id;
+  private final int id;
 
-  private String title;
+  private final String title;
 
-  private String instructor;
+  private final String instructor;
 
-  private String language;
+  private final String language;
 
-  private Boolean isFree;
+  private final Boolean isFree;
 
-  private String price;
+  private final String price;
 
   protected VideoCreateResponse(CreateForm form) {
     this.message = "video successfully created";

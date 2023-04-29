@@ -42,7 +42,8 @@ public class VideoController {
   @PostMapping
   public ResponseEntity<VideoCreateResponse> createVideo(@RequestBody @Validated CreateForm form,
                                                          UriComponentsBuilder builder) {
-    videoService.createVideo(form);
+    videoService.createVideo(form.getTitle(), form.getInstructor(), form.getLanguage(), form.getIsFree(), Integer.parseInt(form.getPrice()));
+
     URI uri = builder.path("/videos/" + form.getId())
         .build()
         .toUri();

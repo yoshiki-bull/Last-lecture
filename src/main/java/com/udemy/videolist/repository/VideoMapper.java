@@ -1,6 +1,5 @@
 package com.udemy.videolist.repository;
 
-import com.udemy.videolist.application.form.CreateForm;
 import com.udemy.videolist.application.form.UpdateForm;
 import com.udemy.videolist.model.Video;
 import java.util.List;
@@ -32,7 +31,7 @@ public interface VideoMapper {
 
   @Insert("INSERT INTO videos (title, instructor, language, is_free, price) VALUES (#{title}, #{instructor}, #{language}, #{isFree}, #{price})")
   @Options(useGeneratedKeys = true, keyProperty = "id")
-  void createVideo(CreateForm form);
+  void createVideo(Video video);
 
   @Update("UPDATE videos SET title = #{form.title}, instructor = #{form.instructor}, language = #{form.language}, is_free = #{form.isFree}, price = #{form.price} WHERE id = #{id}")
   void updateVideo(int id, UpdateForm form);
