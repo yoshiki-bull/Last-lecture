@@ -22,7 +22,6 @@ class VideoMapperTest {
   @Autowired
   VideoMapper videoMapper;
 
-
   @Test
   @DataSet(value = "videoList.yml")
   @Transactional
@@ -93,5 +92,13 @@ class VideoMapperTest {
     Video video = new Video("Mockito", "Mike", "English", true, 0);
 
     videoMapper.updateVideo(1, video);
+  }
+
+  @Test
+  @Transactional
+  @DataSet(value = "videoList.yml")
+  @ExpectedDataSet(value = "expectedAfterDeleteVideo.yml")
+  void 指定したidのビデオを削除できること() {
+    videoMapper.deleteVideo(1);
   }
 }
