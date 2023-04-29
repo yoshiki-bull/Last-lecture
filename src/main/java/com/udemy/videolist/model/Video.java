@@ -2,9 +2,11 @@ package com.udemy.videolist.model;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
 @EqualsAndHashCode
+@NoArgsConstructor
 public class Video {
 
   private Integer id;
@@ -18,8 +20,6 @@ public class Video {
   private Boolean isFree;
 
   private int price;
-
-  public Video() {}
 
   public Video(Integer id, String title, String instructor, String language, Boolean isFree, int price) {
     this.id = id;

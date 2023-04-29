@@ -1,6 +1,7 @@
 package com.udemy.videolist.repository;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.github.database.rider.core.api.dataset.DataSet;
 import com.github.database.rider.core.api.dataset.ExpectedDataSet;
@@ -82,6 +83,8 @@ class VideoMapperTest {
     assertThat(video4.getId()).isNotNull();
 
     assertThat(video4.getId()).isGreaterThan(video3.getId());
+    assertThat(video3.getId()).isLessThan(video4.getId());
+    assertTrue(video4.getId() > video3.getId());
   }
 
   @Test

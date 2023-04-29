@@ -32,10 +32,8 @@ public class VideoServiceImpl implements VideoService {
   }
 
   @Override
-  public Video createVideo(Video video) {
+  public void createVideo(Video video) {
     videoMapper.createVideo(video);
-
-    return video;
   }
 
   @Override

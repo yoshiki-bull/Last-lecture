@@ -9,7 +9,7 @@ public interface VideoService {
 
   List<Video> searchVideos(String language, Boolean isFree);
 
-  Video createVideo(Video video);
+  void createVideo(Video video);
 
   void updateVideo(int id, Video video);
 
