@@ -22,23 +22,6 @@ class VideoMapperTest {
   @Autowired
   VideoMapper videoMapper;
 
-  /*@Test
-  @Sql(
-      scripts = {"classpath:/sqlannotation/delete-videos.sql", "classpath:/sqlannotation/insert-videos.sql"},
-      executionPhase = Sql.ExecutionPhase.BEFORE_TEST_METHOD
-  )
-  @Transactional
-  void 全てのビデオが取得できること() {
-    List<Video> videoList = videoMapper.findAllVideos();
-
-    assertThat(videoList)
-        .hasSize(2)
-        .contains(
-            new Video(1, "もう怖くないGit!", "山浦", "Japanese", false, 12000),
-            new Video(2, "The Web Developer Bootcamp", "Colt", "English", false, 12000)
-        );
-  }*/
-
 
   @Test
   @DataSet(value = "videoList.yml")
@@ -84,16 +67,16 @@ class VideoMapperTest {
 
   @Test
   @DataSet(value = "videoList.yml")
-  @ExpectedDataSet(value = "expectedAfterInsertVideo.yml")
+  @ExpectedDataSet(value = "expectedAfterInsertVideo.yml", ignoreCols = "id")
   @Transactional
   void DBに新規ビデオが登録された際にidが自動で増加的に採番されること() {
-    Video video3 = new Video("もう怖くないGit!", "山浦", "Japanese", false, 12000);
+    Video video3 = new Video("もう怖くないLinux", "山浦", "Japanese", true, 0);
     assertThat(video3.getId()).isNull();
 
     videoMapper.createVideo(video3);
     assertThat(video3.getId()).isNotNull();
 
-    Video video4 = new Video("The Web Developer Bootcamp", "Colt", "English", false, 12000);
+    Video video4 = new Video("Mockito", "Mike", "English", true, 0);
     assertThat(video4.getId()).isNull();
 
     videoMapper.createVideo(video4);

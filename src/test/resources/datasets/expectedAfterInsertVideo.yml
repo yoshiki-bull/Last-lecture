@@ -14,15 +14,15 @@ videos:
     price: 12000
 
   - id: 3
-    title: "もう怖くないGit!"
+    title: "もう怖くないLinux"
     instructor: "山浦"
     language: "Japanese"
-    is_free: 0
-    price: 12000
+    is_free: 1
+    price: 0
 
   - id: 4
-    title: "The Web Developer Bootcamp"
+    title: "Mockito"
     instructor: "Colt"
     language: "English"
-    is_free: 0
-    price: 12000
+    is_free: 1
+    price: 0

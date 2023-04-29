@@ -12,7 +12,7 @@ import lombok.ToString;
 @ToString
 public class Video {
 
-  private int id;
+  private Integer id;
 
   private String title;
 

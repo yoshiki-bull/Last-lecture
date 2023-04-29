@@ -21,14 +21,14 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
 @RestController
-@RequestMapping("/videos")
+@RequestMapping("/api/videos")
 @RequiredArgsConstructor
 public class VideoController {
 
   private final VideoService videoService;
 
   @GetMapping("/{id}")
-  public Video findById(@PathVariable("id") int id) {
+  public Video findById(@PathVariable("id") Integer id) {
     return videoService.findById(id);
   }
 
@@ -40,25 +40,25 @@ public class VideoController {
   }
 
   @PostMapping
-  public ResponseEntity<VideoCreateResponse> createVideo(@RequestBody @Validated CreateForm form,
-                                                         UriComponentsBuilder builder) {
-    videoService.createVideo(form.getTitle(), form.getInstructor(), form.getLanguage(), form.getIsFree(), Integer.parseInt(form.getPrice()));
-
-    URI uri = builder.path("/videos/" + form.getId())
+  public ResponseEntity<VideoCreateResponse> createVideo(@RequestBody @Validated CreateForm form, UriComponentsBuilder builder) {
+    Video video = videoService.createVideo(form.getTitle(), form.getInstructor(), form.getLanguage(), form.getIsFree(), Integer.parseInt(form.getPrice()));
+    URI uri = builder
+        .path("/api/videos/" + video.getId())
         .build()
         .toUri();
-    return ResponseEntity.created(uri).body(new VideoCreateResponse(form));
+
+    return ResponseEntity.created(uri).body(new VideoCreateResponse(video));
   }
 
   @PatchMapping("/{id}")
-  public ResponseEntity<VideoUpdateResponse> updateVideo(@PathVariable("id") int id,
+  public ResponseEntity<VideoUpdateResponse> updateVideo(@PathVariable("id") Integer id,
                                                          @RequestBody @Validated UpdateForm form) {
     videoService.updateVideo(id, form);
     return ResponseEntity.ok(new VideoUpdateResponse(form));
   }
 
   @DeleteMapping("/{id}")
-  public ResponseEntity<Video> deleteVideo(@PathVariable("id") int id) {
+  public ResponseEntity<Video> deleteVideo(@PathVariable("id") Integer id) {
     videoService.deleteVideo(id);
     return ResponseEntity.noContent().build();
   }
