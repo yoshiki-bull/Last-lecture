@@ -24,7 +24,7 @@ dependencies {
 	runtimeOnly 'com.mysql:mysql-connector-j'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.0'
-	testImplementation group: 'com.github.database-rider', name: 'rider-junit5', version: '1.36.0'
+	testImplementation group: 'com.github.database-rider', name: 'rider-spring', version: '1.36.0'
 }
 
 tasks.named('test') {

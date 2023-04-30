@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.github.database.rider.core.api.dataset.DataSet;
 import com.github.database.rider.core.api.dataset.ExpectedDataSet;
-import com.github.database.rider.junit5.api.DBRider;
+import com.github.database.rider.spring.api.DBRider;
 import com.udemy.videolist.model.Video;
 import java.util.List;
 import java.util.Optional;
@@ -26,7 +26,7 @@ class VideoMapperTest {
   @Test
   @DataSet(value = "videoList.yml")
   @Transactional
-  void 全てのビデオが取得できること() {
+  public void 全てのビデオが取得できること() {
     List<Video> videoList = videoMapper.findAllVideos();
 
     assertThat(videoList)
@@ -68,7 +68,7 @@ class VideoMapperTest {
   @Test
   @Transactional
   @DataSet(value = "videoList.yml")
-  @ExpectedDataSet(value = "expectedAfterInsertVideo.yml")
+  @ExpectedDataSet(value = "expectedAfterInsertVideo.yml", ignoreCols = "id")
   void DBに新規ビデオが登録された際にidが自動で増加的に採番されること() {
     Video video3 = new Video("もう怖くないLinux", "山浦", "Japanese", true, 0);
     assertThat(video3.getId()).isNull();

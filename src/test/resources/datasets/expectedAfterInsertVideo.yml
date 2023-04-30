@@ -22,7 +22,7 @@ videos:
 
   - id: 4
     title: "Mockito"
-    instructor: "Colt"
+    instructor: "Mike"
     language: "English"
     is_free: 1
     price: 0

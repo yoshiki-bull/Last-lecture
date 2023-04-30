@@ -1,11 +1,10 @@
 package com.udemy.videolist.model;
 
-import lombok.EqualsAndHashCode;
+import java.util.Objects;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
-@EqualsAndHashCode
 @NoArgsConstructor
 public class Video {
 
@@ -38,7 +37,7 @@ public class Video {
     this.price = price;
   }
 
-  /*@Override
+  @Override
   public boolean equals(Object o) {
     // インスタンスの参照先(アドレス)が同じか(同一性を確認)
     if (this == o) {
@@ -56,7 +55,7 @@ public class Video {
     // 全ての値(フィールド)が同じか比較した結果を返す
     return Objects.equals(id, video.id) && Objects.equals(title, video.title)
         && Objects.equals(instructor, video.instructor) && Objects.equals(language, video.language)
-        && Objects.equals(isFree, video.isFree) && Objects.equals(price, video.price);
+        && Objects.equals(price, video.price);
   }
 
   @Override
@@ -66,5 +65,5 @@ public class Video {
     // しかしequalsメソッドで「同じ」の定義を変更するのであればそれに準じた仕様に変更する必要がある
     // こうすることでオブジェクトは「同じ」の定義に基づいたハッシュコード値を返すようになる
     return Objects.hash(id, title, instructor, language, isFree, price);
-  }*/
+  }
 }
