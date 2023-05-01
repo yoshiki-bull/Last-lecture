@@ -40,8 +40,15 @@ public class VideoController {
   }
 
   @PostMapping
-  public ResponseEntity<VideoCreateResponse> createVideo(@RequestBody @Validated CreateForm form, UriComponentsBuilder builder) {
-    Video video = new Video(form.getTitle(), form.getInstructor(), form.getLanguage(), form.getIsFree(), Integer.parseInt(form.getPrice()));
+  public ResponseEntity<VideoCreateResponse> createVideo(
+      @RequestBody @Validated CreateForm form, UriComponentsBuilder builder) {
+    Video video = new Video(
+        form.getTitle(),
+        form.getInstructor(),
+        form.getLanguage(),
+        form.getIsFree(),
+        Integer.parseInt(form.getPrice()));
+
     videoService.createVideo(video);
 
     URI uri = builder
@@ -53,9 +60,15 @@ public class VideoController {
   }
 
   @PatchMapping("/{id}")
-  public ResponseEntity<VideoUpdateResponse> updateVideo(@PathVariable("id") Integer id,
-                                                         @RequestBody @Validated UpdateForm form) {
-    Video video = new Video(form.getTitle(), form.getInstructor(), form.getLanguage(), form.getIsFree(), Integer.parseInt(form.getPrice()));
+  public ResponseEntity<VideoUpdateResponse> updateVideo(
+      @PathVariable("id") Integer id, @RequestBody @Validated UpdateForm form) {
+    Video video = new Video(
+        form.getTitle(),
+        form.getInstructor(),
+        form.getLanguage(),
+        form.getIsFree(),
+        Integer.parseInt(form.getPrice()));
+
     videoService.updateVideo(id, video);
 
     return ResponseEntity.ok(new VideoUpdateResponse(video));
@@ -64,6 +77,7 @@ public class VideoController {
   @DeleteMapping("/{id}")
   public ResponseEntity<Video> deleteVideo(@PathVariable("id") Integer id) {
     videoService.deleteVideo(id);
+
     return ResponseEntity.noContent().build();
   }
 }

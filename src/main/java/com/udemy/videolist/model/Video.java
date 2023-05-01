@@ -1,11 +1,13 @@
 package com.udemy.videolist.model;
 
 import java.util.Objects;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 public class Video {
 
   private Integer id;
@@ -19,15 +21,6 @@ public class Video {
   private Boolean isFree;
 
   private int price;
-
-  public Video(Integer id, String title, String instructor, String language, Boolean isFree, int price) {
-    this.id = id;
-    this.title = title;
-    this.instructor = instructor;
-    this.language = language;
-    this.isFree = isFree;
-    this.price = price;
-  }
 
   public Video(String title, String instructor, String language, Boolean isFree, int price) {
     this.title = title;
@@ -43,6 +36,7 @@ public class Video {
     if (this == o) {
       return true;
     }
+
     // nullもしくは異なるクラスのインスタンスではないか
     if (o == null || getClass() != o.getClass()) {
       return false;
@@ -53,8 +47,10 @@ public class Video {
     Video video = (Video) o;
 
     // 全ての値(フィールド)が同じか比較した結果を返す
-    return Objects.equals(id, video.id) && Objects.equals(title, video.title)
-        && Objects.equals(instructor, video.instructor) && Objects.equals(language, video.language)
+    return Objects.equals(id, video.id)
+        && Objects.equals(title, video.title)
+        && Objects.equals(instructor, video.instructor)
+        && Objects.equals(language, video.language)
         && Objects.equals(price, video.price);
   }
 

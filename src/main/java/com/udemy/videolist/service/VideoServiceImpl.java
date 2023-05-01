@@ -15,7 +15,9 @@ public class VideoServiceImpl implements VideoService {
 
   @Override
   public Video findById(int videoId) {
-    return this.videoMapper.findById(videoId).orElseThrow(() -> new VideoNotFoundException(videoId));
+    return this.videoMapper
+        .findById(videoId)
+        .orElseThrow(() -> new VideoNotFoundException(videoId));
   }
 
   @Override
@@ -39,12 +41,14 @@ public class VideoServiceImpl implements VideoService {
   @Override
   public void updateVideo(int id, Video video) {
     videoMapper.findById(id).orElseThrow(() -> new VideoNotFoundException(id));
+
     videoMapper.updateVideo(id, video);
   }
 
   @Override
   public void deleteVideo(int id) {
     videoMapper.findById(id).orElseThrow(() -> new VideoNotFoundException(id));
+
     videoMapper.deleteVideo(id);
   }
 }
