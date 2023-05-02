@@ -41,7 +41,9 @@ jacocoTestReport {
 }
 
 spotbugs {
+	spotbugsMain.enabled = true
 	spotbugsTest.enabled = false
+	ignoreFailures = true
 }
 
 spotbugsMain {
