@@ -33,7 +33,7 @@ class VideoMapperTest {
         .hasSize(2)
         .contains(
             new Video(1, "もう怖くないGit!", "山浦", "Japanese", false, 12000),
-            new Video(2, "The Web Developer Bootcamp", "Colt", "English", false, 12000)
+            new Video(2, "The Web Developer Bootcamp", "Colt", "English", true, 0)
         );
   }
 
@@ -49,7 +49,7 @@ class VideoMapperTest {
   @Test
   @DataSet(value = "videoList.yml")
   @Transactional
-  void 引数に渡したidのビデオを取得できること() {
+  void 指定したidのビデオを取得できること() {
     Optional<Video> video = videoMapper.findById(1);
 
     assertThat(video)
@@ -63,6 +63,36 @@ class VideoMapperTest {
     Optional<Video> video = videoMapper.findById(3);
 
     assertThat(video).isEmpty();
+  }
+
+  @Test
+  @DataSet(value = "videoList.yml")
+  @Transactional
+  void 指定した言語のビデオのみが取得できること() {
+    List<Video> video = videoMapper.findByLanguage("English");
+
+    assertThat(video)
+        .contains(new Video(2, "The Web Developer Bootcamp", "Colt", "English", true, 0));
+  }
+
+  @Test
+  @DataSet(value = "videoList.yml")
+  @Transactional
+  void 指定した有料か無料であるビデオのみが取得できること() {
+    List<Video> video = videoMapper.findByIsFree(true);
+
+    assertThat(video)
+        .contains(new Video(2, "The Web Developer Bootcamp", "Colt", "English", true, 0));
+  }
+
+  @Test
+  @DataSet(value = "videoList.yml")
+  @Transactional
+  void 指定した言語と有料か無料のビデオのみが取得できること() {
+    List<Video> video = videoMapper.findByLanguageAndIsFree("English", true);
+
+    assertThat(video)
+        .contains(new Video(2, "The Web Developer Bootcamp", "Colt", "English", true, 0));
   }
 
   @Test

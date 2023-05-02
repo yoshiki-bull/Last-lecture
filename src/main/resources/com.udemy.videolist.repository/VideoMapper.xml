@@ -18,7 +18,7 @@
         FROM videos
     </select>
 
-    <select id="findById" parameterType="Integer" resultMap="videoMap">
+    <select id="findById" parameterType="java.lang.Integer" resultMap="videoMap">
         SELECT *
         FROM videos
         WHERE id = #{id}
@@ -55,7 +55,7 @@
             language = #{video.language},
             is_free = #{video.isFree},
             price = #{video.price}
-        WHERE id = #{id}")
+        WHERE id = #{id}
     </update>
 
     <delete id="deleteVideo" parameterType="Integer">
