@@ -125,29 +125,28 @@ class VideoServiceImplTest {
     verify(videoMapper).createVideo(video);
   }
 
-  /*@Test
+  @Test
   public void ビデオが更新できること() throws Exception {
-    Video video = new Video(1, "もう怖くないGit!", "山浦", "Japanese", false, 12000);
-    UpdateForm updateForm = new UpdateForm();
+    Video video = new Video( "もう怖くないGit!", "山浦", "Japanese", false, 12000);
 
     doReturn(Optional.of(video)).when(videoMapper).findById(1);
 
-    videoServiceImpl.updateVideo(1, updateForm);
+    videoServiceImpl.updateVideo(1, video);
     verify(videoMapper).findById(1);
-    verify(videoMapper).updateVideo(1, updateForm);
-  }*/
+    verify(videoMapper).updateVideo(1, video);
+  }
 
-  /*@Test
+  @Test
   public void 更新対象のビデオが存在しない場合VideoNotFoundExceptionがthrowされること() {
     doReturn(Optional.empty()).when(videoMapper).findById(1);
-    UpdateForm updateForm = new UpdateForm();
+    Video video = new Video("もう怖くないGit!", "山浦", "Japanese", false, 12000);
 
-    assertThatThrownBy(() -> videoServiceImpl.updateVideo(1, updateForm))
+    assertThatThrownBy(() -> videoServiceImpl.updateVideo(1, video))
         .isInstanceOf(VideoNotFoundException.class)
         .hasMessage("ビデオID:1は見つかりませんでした");
     verify(videoMapper).findById(1);
-    verify(videoMapper, never()).updateVideo(1, updateForm);
-  }*/
+    verify(videoMapper, never()).updateVideo(1, video);
+  }
 
   @Test
   public void ビデオが削除できること() throws Exception {
