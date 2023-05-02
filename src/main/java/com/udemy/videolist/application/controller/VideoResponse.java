@@ -14,8 +14,6 @@ public class VideoResponse {
 
   private final String language;
 
-  private final Boolean isFree;
-
   private final int price;
 
   public VideoResponse(Video video) {
@@ -23,7 +21,6 @@ public class VideoResponse {
     this.title = video.getTitle();
     this.instructor = video.getInstructor();
     this.language = video.getLanguage();
-    this.isFree = video.getIsFree();
     this.price = video.getPrice();
   }
 }
