@@ -18,19 +18,19 @@
         FROM videos
     </select>
 
-    <select id="findById" parameterType="java.lang.Integer" resultMap="videoMap">
+    <select id="findById" resultMap="videoMap">
         SELECT *
         FROM videos
         WHERE id = #{id}
     </select>
 
-    <select id="findByLanguage" parameterType="String" resultMap="videoMap">
+    <select id="findByLanguage" resultMap="videoMap">
         SELECT *
         FROM videos
         WHERE language = #{language}
     </select>
 
-    <select id="findByIsFree" parameterType="Boolean" resultMap="videoMap">
+    <select id="findByIsFree" resultMap="videoMap">
         SELECT *
         FROM videos
         WHERE is_free = #{isFree}
@@ -43,12 +43,12 @@
         AND is_free = #{isFree}
     </select>
 
-    <insert id="createVideo" useGeneratedKeys="true" keyProperty="id">
+    <insert id="createVideo" parameterType="Video" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO videos (title, instructor, language, is_free, price)
         VALUES (#{title}, #{instructor}, #{language}, #{isFree}, #{price})
     </insert>
 
-    <update id="updateVideo" parameterType="Integer">
+    <update id="updateVideo">
         UPDATE videos
         SET title = #{video.title},
             instructor = #{video.instructor},
@@ -58,7 +58,7 @@
         WHERE id = #{id}
     </update>
 
-    <delete id="deleteVideo" parameterType="Integer">
+    <delete id="deleteVideo">
         DELETE
         FROM videos
         WHERE id = #{id}
