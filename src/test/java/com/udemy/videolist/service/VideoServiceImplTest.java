@@ -31,4 +31,21 @@ class VideoServiceImplTest {
     Video actual = videoServiceimpl.findById(1);
     assertThat(actual).isEqualTo(video);
   }
+
+
+  @Test
+  void searchVideos() {
+  }
+
+  @Test
+  void createVideo() {
+  }
+
+  @Test
+  void updateVideo() {
+  }
+
+  @Test
+  void deleteVideo() {
+  }
 }
