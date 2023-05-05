@@ -26,6 +26,8 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.0'
 	testImplementation group: 'com.github.database-rider', name: 'rider-spring', version: '1.36.0'
+	testImplementation group: 'net.javacrumbs.json-unit', name: 'json-unit-assertj', version: '0.0.15'
+	testImplementation group: 'org.mockito', name: 'mockito-inline', version: '2.7.21'
 }
 
 tasks.named('test') {

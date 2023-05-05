@@ -28,8 +28,9 @@ public class VideoController {
   private final VideoService videoService;
 
   @GetMapping("/{id}")
-  public Video findById(@PathVariable("id") Integer id) {
-    return videoService.findById(id);
+  public VideoResponse findById(@PathVariable("id") Integer id) {
+    return new VideoResponse(videoService.findById(id));
+
   }
 
   @GetMapping("/search")
