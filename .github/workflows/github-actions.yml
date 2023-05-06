@@ -53,6 +53,12 @@ jobs:
           checkstyle_config: 'config/checkstyle/checkstyle.xml'
           workdir: 'src/main'
 
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
+        if: always()
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+
       - name: Run SpotBugs
         id: spotbugs
         run: ./gradlew spotbugsMain
@@ -64,12 +70,6 @@ jobs:
         with:
           name: test results
           path: build/reports/spotbugs/main.html
-
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
-        if: always()
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Discord Notification
         uses: sarisia/actions-status-discord@v1
