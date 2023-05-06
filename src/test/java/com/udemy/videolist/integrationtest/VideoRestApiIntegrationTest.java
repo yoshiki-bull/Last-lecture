@@ -36,7 +36,7 @@ public class VideoRestApiIntegrationTest {
   @Transactional
   @DataSet(value = "videoList.yml")
   void 全てのビデオを取得できること() throws Exception {
-    String response = mockMvc.perform(MockMvcRequestBuilders
+    String jsonResponse = mockMvc.perform(MockMvcRequestBuilders
             .get("/api/videos/search"))
             .andExpect(status().isOk())
             .andReturn()
@@ -58,7 +58,7 @@ public class VideoRestApiIntegrationTest {
             "language": "English",
             "price": 0
         }]
-        """, response, JSONCompareMode.STRICT);
+        """, jsonResponse, JSONCompareMode.STRICT);
   } // JSON配列をSTRICTモードで要素の順番まで厳密に比較
 
   @Test
@@ -66,7 +66,7 @@ public class VideoRestApiIntegrationTest {
   @DataSet(value = "videoList.yml")
   void 指定したIDのビデオが取得できること() throws Exception {
     String url = "/api/videos/1";
-    String response = mockMvc.perform(MockMvcRequestBuilders
+    String jsonResponse = mockMvc.perform(MockMvcRequestBuilders
             .get(url)                                    // GETリクエストのMockHttpServletRequestBuilderを作成
             .accept(MediaType.APPLICATION_JSON_VALUE))   // クライアントが受け入れ可能なコンテンツタイプを指定
             .andExpect(status().isOk())                  // ステータスコードを検証するためのResultMatcherの実装
@@ -81,24 +81,21 @@ public class VideoRestApiIntegrationTest {
             "instructor": "山浦",
             "language": "Japanese",
             "price": 12000
-        }""", response, true); // JSONオブジェクトの検証
+        }""", jsonResponse, true); // JSONオブジェクトの検証
   }
 
   @Test
   @Transactional
   @DataSet(value = "videoList.yml")
-  void 指定したIDのビデオが存在しない場合に独自例外がスローされレスポンスボディに指定したIDが存在しないと表示されること()
-      throws Exception {
+  void 存在しないIDを指定してビデオを取得しようとした場合に404エラーとなり独自例外がスローされること() throws Exception {
     String url = "/api/videos/0";
-    ZonedDateTime zonedDateTime =
-        ZonedDateTime.of(2023, 5, 5, 17, 0, 0, 0, ZoneId.of("Asia/Tokyo"));
+    ZonedDateTime zonedDateTime = ZonedDateTime.of(2023, 5, 5, 17, 0, 0, 0, ZoneId.of("Asia/Tokyo"));
 
     // try-with-resources モック化されたstaticメソッドを開放
-    try (MockedStatic<ZonedDateTime> zonedDateTimeMockedStatic = Mockito.mockStatic(
-        ZonedDateTime.class)) {
+    try (MockedStatic<ZonedDateTime> zonedDateTimeMockedStatic = Mockito.mockStatic(ZonedDateTime.class)) {
       zonedDateTimeMockedStatic.when(ZonedDateTime::now).thenReturn(zonedDateTime);
 
-      String response = mockMvc.perform(MockMvcRequestBuilders
+      String jsonResponse = mockMvc.perform(MockMvcRequestBuilders
               .get(url)
               .accept(MediaType.APPLICATION_JSON_VALUE)) //perform
               .andExpect(status().isNotFound())
@@ -113,7 +110,7 @@ public class VideoRestApiIntegrationTest {
               "error": "Not Found",
               "timestamp": "2023-05-05T17:00+09:00[Asia/Tokyo]",
               "message": "ビデオID:0は見つかりませんでした"
-          }""", response, true);
+          }""", jsonResponse, true);
     }
   }
 
@@ -122,7 +119,7 @@ public class VideoRestApiIntegrationTest {
   @DataSet(value = "videoList.yml")
   void 言語のみを指定した場合に指定した言語のビデオのみがJSON配列形式で取得できること() throws Exception {
     String url = "/api/videos/search?lang=Japanese";
-    String response = mockMvc.perform(MockMvcRequestBuilders
+    String jsonResponse = mockMvc.perform(MockMvcRequestBuilders
                 .get(url)
                 .accept(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(status().isOk()).andReturn().getResponse()
@@ -136,7 +133,7 @@ public class VideoRestApiIntegrationTest {
             "language": "Japanese",
             "price": 12000
         }]
-        """, response, true);
+        """, jsonResponse, true);
   }
 
   @Test
@@ -144,7 +141,7 @@ public class VideoRestApiIntegrationTest {
   @DataSet("videoList.yml")
   void 指定した無料状態であるビデオのみがJSON配列形式で取得できること() throws Exception {
     String url = "/api/videos/search?is_free=true";
-    String response = mockMvc.perform(MockMvcRequestBuilders
+    String jsonResponse = mockMvc.perform(MockMvcRequestBuilders
                 .get(url)
                 .accept(MediaType.APPLICATION_JSON_VALUE))
                 .andExpect(status().isOk())
@@ -160,7 +157,7 @@ public class VideoRestApiIntegrationTest {
             "language": "English",
             "price": 0
         }]
-        """, response, true);
+        """, jsonResponse, true);
   }
 
   @Test
@@ -168,7 +165,7 @@ public class VideoRestApiIntegrationTest {
   @DataSet("videoList.yml")
   void 指定した言語かつ無料状態であるビデオのみがJSON配列形式で取得できること() throws Exception {
     String url = "/api/videos/search?lang=English&is_free=true";
-    String response = mockMvc.perform(MockMvcRequestBuilders
+    String jsonResponse = mockMvc.perform(MockMvcRequestBuilders
             .get(url)
             .accept(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(status().isOk())
@@ -184,7 +181,7 @@ public class VideoRestApiIntegrationTest {
             "language": "English",
             "price": 0
         }]
-        """, response, true);
+        """, jsonResponse, true);
   }
 
   @Test
@@ -262,5 +259,43 @@ public class VideoRestApiIntegrationTest {
             "price": 0
         }
         """, jsonResponse, true);
+  }
+
+  @Test
+  @Transactional
+  @DataSet(value = "videoList.yml")
+  void 存在しないIDを指定してビデオ情報を更新しようとした場合に404エラーとなり独自例外がスローされること() throws Exception {
+    String url = "/api/videos/0";
+    ZonedDateTime zonedDateTime = ZonedDateTime.of(2023, 5, 5, 17, 0, 0, 0, ZoneId.of("Asia/Tokyo"));
+
+    try (MockedStatic<ZonedDateTime> zonedDateTimeMockedStatic = Mockito.mockStatic(ZonedDateTime.class)) {
+      zonedDateTimeMockedStatic.when(ZonedDateTime::now).thenReturn(zonedDateTime);
+
+      String jsonResponse = mockMvc.perform(MockMvcRequestBuilders
+              .patch(url)
+              .contentType(MediaType.APPLICATION_JSON_VALUE)
+              .content("""
+                {
+                    "title": "もう怖くないLinux",
+                    "instructor": "山浦",
+                    "language": "Japanese",
+                    "isFree": true,
+                    "price": "0"
+                }
+                """))
+          .andExpect(status().isNotFound())
+          .andReturn()
+          .getResponse()
+          .getContentAsString(StandardCharsets.UTF_8);
+
+      JSONAssert.assertEquals("""
+          {
+              "status": "404",
+              "path": "/api/videos/0",
+              "error": "Not Found",
+              "timestamp": "2023-05-05T17:00+09:00[Asia/Tokyo]",
+              "message": "ビデオID:0は見つかりませんでした"
+          }""", jsonResponse, true);
+    }
   }
 }
