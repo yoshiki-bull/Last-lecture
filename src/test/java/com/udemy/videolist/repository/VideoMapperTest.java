@@ -98,7 +98,7 @@ class VideoMapperTest {
   @Test
   @Transactional
   @DataSet(value = "videoList.yml")
-  @ExpectedDataSet(value = "expectedAfterInsertVideo.yml", ignoreCols = "id")
+  @ExpectedDataSet(value = "autoIncrementID.yml", ignoreCols = "id")
   void DBに新規ビデオが登録された際にidが自動で増加的に採番されること() {
     Video video3 = new Video("もう怖くないLinux", "山浦", "Japanese", true, 0);
     assertThat(video3.getId()).isNull();

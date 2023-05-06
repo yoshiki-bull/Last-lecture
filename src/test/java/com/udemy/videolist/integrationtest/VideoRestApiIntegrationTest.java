@@ -3,7 +3,9 @@ package com.udemy.videolist.integrationtest;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import com.github.database.rider.core.api.dataset.DataSet;
+import com.github.database.rider.core.api.dataset.ExpectedDataSet;
 import com.github.database.rider.spring.api.DBRider;
+import com.jayway.jsonpath.JsonPath;
 import java.nio.charset.StandardCharsets;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
@@ -70,7 +72,7 @@ public class VideoRestApiIntegrationTest {
         .andExpect(status().isOk())                  // ステータスコードを検証するためのResultMatcherの実装
         .andReturn()                                 // HTTPリクエストの結果を取得
         .getResponse()                               // 結果のレスポンスを返す(MockHttpServletResponse)
-        .getContentAsString(StandardCharsets.UTF_8); // レスポンスを文字列として扱う
+        .getContentAsString(StandardCharsets.UTF_8); // レスポンスを文字列(UTF_8)として扱う
 
     JSONAssert.assertEquals(""" 
         {
@@ -182,5 +184,48 @@ public class VideoRestApiIntegrationTest {
             "price": 0
         }]
         """, response, true);
+  }
+
+  @Test
+  @Transactional
+  @DataSet(value = "videoList.yml")
+  @ExpectedDataSet(value = "expectedAfterInsertVideo.yml", ignoreCols = "id")
+  void 要件を満たしていれば正常にビデオが登録できること() throws Exception {
+    String url = "/api/videos";
+    String jsonResponse = mockMvc.perform(MockMvcRequestBuilders
+            .post(url)
+            .contentType(MediaType.APPLICATION_JSON_VALUE)
+            .content("""
+                {
+                "title": "もう怖くないLinux",
+                "instructor": "山浦",
+                "language": "Japanese",
+                "isFree": true,
+                "price": "0"
+            }
+            """))
+        .andExpect(status().isCreated())
+        .andReturn()
+        .getResponse()
+        .getContentAsString(StandardCharsets.UTF_8);
+
+    // 自動生成されたIDを取得
+    int generatedId = JsonPath.read(jsonResponse, "$.id");
+
+    // 期待値のJSONを動的に構築
+    String expectedJson = String.format("""
+            {
+                "message": "video successfully created",
+                "id": %d,
+                "title": "もう怖くないLinux",
+                "instructor": "山浦",
+                "language": "Japanese",
+                "isFree": true,
+                "price": 0
+            }
+            """, generatedId);
+
+    // レスポンスのJSONと期待値を比較
+    JSONAssert.assertEquals(expectedJson, jsonResponse, true);
   }
 }
