@@ -59,7 +59,7 @@ public class VideoRestApiIntegrationTest {
             "price": 0
         }]
         """, jsonResponse, JSONCompareMode.STRICT);
-  } // JSON配列をSTRICTモードで要素の順番まで厳密に比較
+  }
 
   @Test
   @Transactional
@@ -67,12 +67,12 @@ public class VideoRestApiIntegrationTest {
   void 指定したIDのビデオが取得できること() throws Exception {
     String url = "/api/videos/1";
     String jsonResponse = mockMvc.perform(MockMvcRequestBuilders
-            .get(url)                                    // GETリクエストのMockHttpServletRequestBuilderを作成
-            .accept(MediaType.APPLICATION_JSON_VALUE))   // クライアントが受け入れ可能なコンテンツタイプを指定
-            .andExpect(status().isOk())                  // ステータスコードを検証するためのResultMatcherの実装
-            .andReturn()                                 // HTTPリクエストの結果を取得
-            .getResponse()                               // 結果のレスポンスを返す(MockHttpServletResponse)
-            .getContentAsString(StandardCharsets.UTF_8); // レスポンスを文字列(UTF_8)として扱う
+            .get(url)
+            .accept(MediaType.APPLICATION_JSON_VALUE))
+            .andExpect(status().isOk())
+            .andReturn()
+            .getResponse()
+            .getContentAsString(StandardCharsets.UTF_8);
 
     JSONAssert.assertEquals(""" 
         {
@@ -81,7 +81,7 @@ public class VideoRestApiIntegrationTest {
             "instructor": "山浦",
             "language": "Japanese",
             "price": 12000
-        }""", jsonResponse, true); // JSONオブジェクトの検証
+        }""", jsonResponse, true);
   }
 
   @Test
@@ -206,10 +206,8 @@ public class VideoRestApiIntegrationTest {
             .getResponse()
             .getContentAsString(StandardCharsets.UTF_8);
 
-    // 自動生成されたIDを取得
     int generatedId = JsonPath.read(jsonResponse, "$.id");
 
-    // 期待値のJSONを動的に構築
     String expectedJson = String.format("""
         {
             "message": "video successfully created",
@@ -222,7 +220,6 @@ public class VideoRestApiIntegrationTest {
         }
         """, generatedId);
 
-    // レスポンスのJSONと期待値を比較
     JSONAssert.assertEquals(expectedJson, jsonResponse, true);
   }
 
@@ -287,6 +284,52 @@ public class VideoRestApiIntegrationTest {
           .andReturn()
           .getResponse()
           .getContentAsString(StandardCharsets.UTF_8);
+
+      JSONAssert.assertEquals("""
+          {
+              "status": "404",
+              "path": "/api/videos/0",
+              "error": "Not Found",
+              "timestamp": "2023-05-05T17:00+09:00[Asia/Tokyo]",
+              "message": "ビデオID:0は見つかりませんでした"
+          }""", jsonResponse, true);
+    }
+  }
+
+  @Test
+  @Transactional
+  @DataSet(value = "videoList.yml")
+  @ExpectedDataSet(value = "expectedAfterDeleteVideo.yml")
+  void 指定したIDのビデオ情報が正常に削除できること() throws Exception {
+    String url = "/api/videos/1";
+    mockMvc.perform(MockMvcRequestBuilders
+        .delete(url))
+        .andExpect(status().isNoContent());
+  }
+
+  @Test
+  @Transactional
+  @DataSet(value = "videoList.yml")
+  void 存在しないビデオを指定してビデオ情報を削除しようとした場合に404エラーが発生し独自例外がスローされること() throws Exception {
+    String url = "/api/videos/0";
+    ZonedDateTime zonedDateTime = ZonedDateTime.of(2023, 5, 5, 17, 0, 0, 0, ZoneId.of("Asia/Tokyo"));
+
+    try (MockedStatic<ZonedDateTime> zonedDateTimeMockedStatic = Mockito.mockStatic(ZonedDateTime.class)) {
+      zonedDateTimeMockedStatic.when(ZonedDateTime::now).thenReturn(zonedDateTime);
+
+      mockMvc.perform(MockMvcRequestBuilders
+              .delete(url))
+              .andExpect(status().isNotFound());
+
+      String jsonResponse = """
+          {
+              "status": "404",
+              "path": "/api/videos/0",
+              "error": "Not Found",
+              "timestamp": "2023-05-05T17:00+09:00[Asia/Tokyo]",
+              "message": "ビデオID:0は見つかりませんでした"
+          }
+          """;
 
       JSONAssert.assertEquals("""
           {
