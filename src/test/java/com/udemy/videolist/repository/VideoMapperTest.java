@@ -120,9 +120,9 @@ class VideoMapperTest {
   @Test
   @Transactional
   @DataSet(value = "videoList.yml")
-  @ExpectedDataSet(value = "expectedAfterUpdate.yml")
+  @ExpectedDataSet(value = "expectedAfterUpdateVideo.yml")
   void 指定したidのビデオ情報が更新できること() {
-    Video video = new Video("Mockito", "Mike", "English", true, 0);
+    Video video = new Video("もう怖くないLinux", "山浦", "Japanese", true, 0);
 
     videoMapper.updateVideo(1, video);
   }

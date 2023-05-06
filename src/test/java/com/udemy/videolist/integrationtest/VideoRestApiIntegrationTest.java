@@ -37,11 +37,11 @@ public class VideoRestApiIntegrationTest {
   @DataSet(value = "videoList.yml")
   void 全てのビデオを取得できること() throws Exception {
     String response = mockMvc.perform(MockMvcRequestBuilders
-        .get("/api/videos/search"))
-        .andExpect(status().isOk())
-        .andReturn()
-        .getResponse()
-        .getContentAsString(StandardCharsets.UTF_8);
+            .get("/api/videos/search"))
+            .andExpect(status().isOk())
+            .andReturn()
+            .getResponse()
+            .getContentAsString(StandardCharsets.UTF_8);
 
     JSONAssert.assertEquals("""
         [{
@@ -67,12 +67,12 @@ public class VideoRestApiIntegrationTest {
   void 指定したIDのビデオが取得できること() throws Exception {
     String url = "/api/videos/1";
     String response = mockMvc.perform(MockMvcRequestBuilders
-        .get(url)                                    // GETリクエストのMockHttpServletRequestBuilderを作成
-        .accept(MediaType.APPLICATION_JSON_VALUE))   // クライアントが受け入れ可能なコンテンツタイプを指定
-        .andExpect(status().isOk())                  // ステータスコードを検証するためのResultMatcherの実装
-        .andReturn()                                 // HTTPリクエストの結果を取得
-        .getResponse()                               // 結果のレスポンスを返す(MockHttpServletResponse)
-        .getContentAsString(StandardCharsets.UTF_8); // レスポンスを文字列(UTF_8)として扱う
+            .get(url)                                    // GETリクエストのMockHttpServletRequestBuilderを作成
+            .accept(MediaType.APPLICATION_JSON_VALUE))   // クライアントが受け入れ可能なコンテンツタイプを指定
+            .andExpect(status().isOk())                  // ステータスコードを検証するためのResultMatcherの実装
+            .andReturn()                                 // HTTPリクエストの結果を取得
+            .getResponse()                               // 結果のレスポンスを返す(MockHttpServletResponse)
+            .getContentAsString(StandardCharsets.UTF_8); // レスポンスを文字列(UTF_8)として扱う
 
     JSONAssert.assertEquals(""" 
         {
@@ -87,30 +87,33 @@ public class VideoRestApiIntegrationTest {
   @Test
   @Transactional
   @DataSet(value = "videoList.yml")
-  void 指定したIDのビデオが存在しない場合に独自例外がスローされレスポンスボディに指定したIDが存在しないと表示されること() throws Exception {
+  void 指定したIDのビデオが存在しない場合に独自例外がスローされレスポンスボディに指定したIDが存在しないと表示されること()
+      throws Exception {
     String url = "/api/videos/0";
-    ZonedDateTime zonedDateTime = ZonedDateTime.of(2023, 5, 5, 17, 0, 0, 0, ZoneId.of("Asia/Tokyo"));
+    ZonedDateTime zonedDateTime =
+        ZonedDateTime.of(2023, 5, 5, 17, 0, 0, 0, ZoneId.of("Asia/Tokyo"));
 
     // try-with-resources モック化されたstaticメソッドを開放
-    try (MockedStatic<ZonedDateTime> zonedDateTimeMockedStatic = Mockito.mockStatic(ZonedDateTime.class)) {
+    try (MockedStatic<ZonedDateTime> zonedDateTimeMockedStatic = Mockito.mockStatic(
+        ZonedDateTime.class)) {
       zonedDateTimeMockedStatic.when(ZonedDateTime::now).thenReturn(zonedDateTime);
 
       String response = mockMvc.perform(MockMvcRequestBuilders
-          .get(url)
-          .accept(MediaType.APPLICATION_JSON_VALUE)) //perform
-          .andExpect(status().isNotFound())
-          .andReturn()
-          .getResponse()
-          .getContentAsString(StandardCharsets.UTF_8);
+              .get(url)
+              .accept(MediaType.APPLICATION_JSON_VALUE)) //perform
+              .andExpect(status().isNotFound())
+              .andReturn()
+              .getResponse()
+              .getContentAsString(StandardCharsets.UTF_8);
 
-      JSONAssert.assertEquals( """
+      JSONAssert.assertEquals("""
           {
               "status": "404",
               "path": "/api/videos/0",
               "error": "Not Found",
               "timestamp": "2023-05-05T17:00+09:00[Asia/Tokyo]",
               "message": "ビデオID:0は見つかりませんでした"
-          }""" ,response, true);
+          }""", response, true);
     }
   }
 
@@ -120,12 +123,10 @@ public class VideoRestApiIntegrationTest {
   void 言語のみを指定した場合に指定した言語のビデオのみがJSON配列形式で取得できること() throws Exception {
     String url = "/api/videos/search?lang=Japanese";
     String response = mockMvc.perform(MockMvcRequestBuilders
-        .get(url)
-        .accept(MediaType.APPLICATION_JSON_VALUE))
-        .andExpect(status().isOk())
-        .andReturn()
-        .getResponse()
-        .getContentAsString(StandardCharsets.UTF_8);
+                .get(url)
+                .accept(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(status().isOk()).andReturn().getResponse()
+                .getContentAsString(StandardCharsets.UTF_8);
 
     JSONAssert.assertEquals("""
         [{
@@ -144,12 +145,12 @@ public class VideoRestApiIntegrationTest {
   void 指定した無料状態であるビデオのみがJSON配列形式で取得できること() throws Exception {
     String url = "/api/videos/search?is_free=true";
     String response = mockMvc.perform(MockMvcRequestBuilders
-            .get(url)
-            .accept(MediaType.APPLICATION_JSON_VALUE))
-            .andExpect(status().isOk())
-            .andReturn()
-            .getResponse()
-            .getContentAsString(StandardCharsets.UTF_8);
+                .get(url)
+                .accept(MediaType.APPLICATION_JSON_VALUE))
+                .andExpect(status().isOk())
+                .andReturn()
+                .getResponse()
+                .getContentAsString(StandardCharsets.UTF_8);
 
     JSONAssert.assertEquals("""
         [{
@@ -197,35 +198,69 @@ public class VideoRestApiIntegrationTest {
             .contentType(MediaType.APPLICATION_JSON_VALUE)
             .content("""
                 {
-                "title": "もう怖くないLinux",
-                "instructor": "山浦",
-                "language": "Japanese",
-                "isFree": true,
-                "price": "0"
-            }
-            """))
-        .andExpect(status().isCreated())
-        .andReturn()
-        .getResponse()
-        .getContentAsString(StandardCharsets.UTF_8);
+                    "title": "もう怖くないLinux",
+                    "instructor": "山浦",
+                    "language": "Japanese",
+                    "isFree": true,
+                    "price": "0"
+                }
+                """)).andExpect(status().isCreated())
+            .andReturn()
+            .getResponse()
+            .getContentAsString(StandardCharsets.UTF_8);
 
     // 自動生成されたIDを取得
     int generatedId = JsonPath.read(jsonResponse, "$.id");
 
     // 期待値のJSONを動的に構築
     String expectedJson = String.format("""
-            {
-                "message": "video successfully created",
-                "id": %d,
-                "title": "もう怖くないLinux",
-                "instructor": "山浦",
-                "language": "Japanese",
-                "isFree": true,
-                "price": 0
-            }
-            """, generatedId);
+        {
+            "message": "video successfully created",
+            "id": %d,
+            "title": "もう怖くないLinux",
+            "instructor": "山浦",
+            "language": "Japanese",
+            "isFree": true,
+            "price": 0
+        }
+        """, generatedId);
 
     // レスポンスのJSONと期待値を比較
     JSONAssert.assertEquals(expectedJson, jsonResponse, true);
+  }
+
+  @Test
+  @Transactional
+  @DataSet(value = "videoList.yml")
+  @ExpectedDataSet(value = "expectedAfterUpdateVideo.yml")
+  void 要件を満たしていれば正常にビデオ情報を更新できること() throws Exception {
+    String url = "/api/videos/1";
+    String jsonResponse = mockMvc.perform(MockMvcRequestBuilders
+        .patch(url)
+        .contentType(MediaType.APPLICATION_JSON_VALUE)
+        .content("""
+                {
+                    "title": "もう怖くないLinux",
+                    "instructor": "山浦",
+                    "language": "Japanese",
+                    "isFree": true,
+                    "price": "0"
+                }
+                """))
+        .andExpect(status().isOk())
+        .andReturn()
+        .getResponse()
+        .getContentAsString(StandardCharsets.UTF_8);
+
+    JSONAssert.assertEquals("""
+        {
+            "message": "video successfully updated",
+            "title": "もう怖くないLinux",
+            "instructor": "山浦",
+            "language": "Japanese",
+            "isFree": true,
+            "price": 0
+        }
+        """, jsonResponse, true);
   }
 }

@@ -1,8 +1,8 @@
 videos:
   - id: 1
-    title: "Mockito"
-    instructor: "Mike"
-    language: "English"
+    title: "もう怖くないLinux"
+    instructor: "山浦"
+    language: "Japanese"
     is_free: 1
     price: 0
 
