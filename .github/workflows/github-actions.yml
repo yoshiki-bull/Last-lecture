@@ -1,8 +1,8 @@
-name: Test Report, Checkstyle, SpotBugs, Notify Codecov CI
+name: Test Report, Checkstyle, SpotBugs, Notify in Discord Codecov CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
 
 permissions:
@@ -31,7 +31,6 @@ jobs:
         run: chmod +x gradlew
 
       - name: Test with Gradle
-        id: test
         run: ./gradlew test
         if: always()
 
@@ -40,16 +39,16 @@ jobs:
         if: always()
         with:
           report_paths: '**/build/test-results/test/TEST-*.xml'
+          job_name: 'Test Report'
 
       - name: Run check style
-        id: checkstyle
         uses: nikitasavinov/checkstyle-action@master
         if: always()
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           reporter: 'github-pr-check'
-          tool_name: 'testtool'
-          level: error
+          tool_name: 'reviewdog-checkstyle'
+          level: info
           checkstyle_config: 'config/checkstyle/checkstyle.xml'
           workdir: 'src/main'
 
@@ -60,7 +59,6 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
 
       - name: Run SpotBugs
-        id: spotbugs
         run: ./gradlew spotbugsMain
         if: always()
 
