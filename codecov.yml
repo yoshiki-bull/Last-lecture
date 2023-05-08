@@ -1,2 +1,4 @@
 codecov:
   branch: main
+  comment:
+    require_changes: false
