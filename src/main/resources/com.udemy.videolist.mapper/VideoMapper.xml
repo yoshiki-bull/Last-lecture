@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.udemy.videolist.repository.VideoMapper">
+<mapper namespace="com.udemy.videolist.mapper.VideoMapper">
 
     <resultMap id="videoMap" type="com.udemy.videolist.model.Video">
         <id property="id" column="id"/>
@@ -51,10 +51,10 @@
     <update id="updateVideo">
         UPDATE videos
         SET title = #{video.title},
-            instructor = #{video.instructor},
-            language = #{video.language},
-            is_free = #{video.isFree},
-            price = #{video.price}
+        instructor = #{video.instructor},
+        language = #{video.language},
+        is_free = #{video.isFree},
+        price = #{video.price}
         WHERE id = #{id}
     </update>
 

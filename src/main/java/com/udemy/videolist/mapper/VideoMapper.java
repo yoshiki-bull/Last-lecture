@@ -1,4 +1,4 @@
-package com.udemy.videolist.repository;
+package com.udemy.videolist.mapper;
 
 import com.udemy.videolist.model.Video;
 import java.util.List;

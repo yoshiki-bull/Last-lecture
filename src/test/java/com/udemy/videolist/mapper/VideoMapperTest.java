@@ -1,4 +1,4 @@
-package com.udemy.videolist.repository;
+package com.udemy.videolist.mapper;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;

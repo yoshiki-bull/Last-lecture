@@ -9,8 +9,8 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
 import com.udemy.videolist.application.exception.VideoNotFoundException;
+import com.udemy.videolist.mapper.VideoMapper;
 import com.udemy.videolist.model.Video;
-import com.udemy.videolist.repository.VideoMapper;
 import java.util.List;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;
@@ -24,7 +24,6 @@ class VideoServiceImplTest {
 
   @Mock
   VideoMapper videoMapper;
-
   @InjectMocks
   VideoServiceImpl videoServiceImpl;
 
