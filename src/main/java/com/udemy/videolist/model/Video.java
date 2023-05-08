@@ -60,6 +60,6 @@ public class Video {
     // 本来はオブジェクトのアドレスを基にハッシュコードを生成するように定義されている
     // しかしequalsメソッドで「同じ」の定義を変更するのであればそれに準じた仕様に変更する必要がある
     // こうすることでオブジェクトは「同じ」の定義に基づいたハッシュコード値を返すようになる
-    return Objects.hash(id, title, instructor, language, isFree, price);
+    return Objects.hash(id, title, instructor, language, price);
   }
 }

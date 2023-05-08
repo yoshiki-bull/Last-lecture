@@ -13,7 +13,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 import org.skyscreamer.jsonassert.JSONAssert;
-import org.skyscreamer.jsonassert.JSONCompareMode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -58,7 +57,7 @@ public class VideoRestApiIntegrationTest {
             "language": "English",
             "price": 0
         }]
-        """, jsonResponse, JSONCompareMode.STRICT);
+        """, jsonResponse, true);
   }
 
   @Test
@@ -97,7 +96,7 @@ public class VideoRestApiIntegrationTest {
 
       String jsonResponse = mockMvc.perform(MockMvcRequestBuilders
               .get(url)
-              .accept(MediaType.APPLICATION_JSON_VALUE)) //perform
+              .accept(MediaType.APPLICATION_JSON_VALUE))
               .andExpect(status().isNotFound())
               .andReturn()
               .getResponse()
