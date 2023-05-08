@@ -1,33 +1,33 @@
 package com.udemy.videolist.application.controller;
 
-import com.udemy.videolist.application.form.CreateForm;
+import com.udemy.videolist.model.Video;
 import lombok.Getter;
 
 @Getter
 public class VideoCreateResponse {
 
-  private String message;
+  private final String message;
 
-  private int id;
+  private final int id;
 
-  private String title;
+  private final String title;
 
-  private String instructor;
+  private final String instructor;
 
-  private String language;
+  private final String language;
 
-  private Boolean isFree;
+  private final Boolean isFree;
 
-  private String price;
+  private final int price;
 
-  protected VideoCreateResponse(CreateForm form) {
+  public VideoCreateResponse(Video video) {
     this.message = "video successfully created";
-    this.id = form.getId();
-    this.title = form.getTitle();
-    this.instructor = form.getInstructor();
-    this.language = form.getLanguage();
-    this.isFree = form.getIsFree();
-    this.price = form.getPrice();
+    this.id = video.getId();
+    this.title = video.getTitle();
+    this.instructor = video.getInstructor();
+    this.language = video.getLanguage();
+    this.isFree = video.getIsFree();
+    this.price = video.getPrice();
   }
 
   ;

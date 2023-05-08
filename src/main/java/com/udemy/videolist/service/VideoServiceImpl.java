@@ -1,10 +1,8 @@
 package com.udemy.videolist.service;
 
 import com.udemy.videolist.application.exception.VideoNotFoundException;
-import com.udemy.videolist.application.form.CreateForm;
-import com.udemy.videolist.application.form.UpdateForm;
+import com.udemy.videolist.mapper.VideoMapper;
 import com.udemy.videolist.model.Video;
-import com.udemy.videolist.repository.VideoMapper;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,8 +14,10 @@ public class VideoServiceImpl implements VideoService {
   private final VideoMapper videoMapper;
 
   @Override
-  public Video findById(int id) {
-    return this.videoMapper.findById(id).orElseThrow(() -> new VideoNotFoundException(id));
+  public Video findById(int videoId) {
+    return this.videoMapper
+        .findById(videoId)
+        .orElseThrow(() -> new VideoNotFoundException(videoId));
   }
 
   @Override
@@ -34,17 +34,21 @@ public class VideoServiceImpl implements VideoService {
   }
 
   @Override
-  public void createVideo(CreateForm form) {
-    videoMapper.createVideo(form);
+  public void createVideo(Video video) {
+    videoMapper.createVideo(video);
   }
 
   @Override
-  public void updateVideo(int id, UpdateForm form) {
-    videoMapper.updateVideo(id, form);
+  public void updateVideo(int id, Video video) {
+    videoMapper.findById(id).orElseThrow(() -> new VideoNotFoundException(id));
+
+    videoMapper.updateVideo(id, video);
   }
 
   @Override
   public void deleteVideo(int id) {
+    videoMapper.findById(id).orElseThrow(() -> new VideoNotFoundException(id));
+
     videoMapper.deleteVideo(id);
   }
 }
