@@ -48,7 +48,7 @@ public class VideoController {
         form.getInstructor(),
         form.getLanguage(),
         form.getIsFree(),
-        Integer.parseInt(form.getPrice()));
+        form.getPrice());
 
     videoService.createVideo(video);
 
@@ -68,7 +68,7 @@ public class VideoController {
         form.getInstructor(),
         form.getLanguage(),
         form.getIsFree(),
-        Integer.parseInt(form.getPrice()));
+        form.getPrice());
 
     videoService.updateVideo(id, video);
 
