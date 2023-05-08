@@ -6,15 +6,15 @@ import lombok.Getter;
 @Getter
 public class VideoResponse {
 
-  private int id;
+  private final int id;
 
-  private String title;
+  private final String title;
 
-  private String instructor;
+  private final String instructor;
 
-  private String language;
+  private final String language;
 
-  private int price;
+  private final int price;
 
   public VideoResponse(Video video) {
     this.id = video.getId();

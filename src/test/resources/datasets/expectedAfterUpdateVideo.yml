@@ -1,0 +1,14 @@
+videos:
+  - id: 1
+    title: "もう怖くないLinux"
+    instructor: "山浦"
+    language: "Japanese"
+    is_free: 1
+    price: 0
+
+  - id: 2
+    title: "The Web Developer Bootcamp"
+    instructor: "Colt"
+    language: "English"
+    is_free: 1
+    price: 0

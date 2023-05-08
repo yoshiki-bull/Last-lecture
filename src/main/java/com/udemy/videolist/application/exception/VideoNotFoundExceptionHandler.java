@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class VideoNotFoundExceptionHandler {
 
   @ExceptionHandler(value = VideoNotFoundException.class)
-  public ResponseEntity<Map<String, String>> handlerNoResourceFound(VideoNotFoundException ex,
-                                                                    HttpServletRequest request) {
+  public ResponseEntity<Map<String, String>> handlerNoResourceFound(
+      VideoNotFoundException ex, HttpServletRequest request) {
 
     Map<String, String> body = Map.of(
         "timestamp", ZonedDateTime.now().toString(),
