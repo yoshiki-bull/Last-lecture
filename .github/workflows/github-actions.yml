@@ -1,4 +1,4 @@
-name: Test Report, Checkstyle, SpotBugs, Notify Codecov CI
+name: Test Report, Checkstyle, SpotBugs, Notify in Discord Codecov CI
 
 on:
   push:
@@ -26,9 +26,6 @@ jobs:
 
       - name: Docker run
         run: docker compose up -d
-
-      - name: Grant execute permission to gradlew
-        run: chmod +x gradlew
 
       - name: Test with Gradle
         run: ./gradlew test
