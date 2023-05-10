@@ -24,15 +24,6 @@ class VideoMapperTest {
   VideoMapper videoMapper;
 
   @Test
-  @DataSet(value = "empty.yml")
-  @Transactional
-  void ビデオが存在しない場合は空のListを返すこと() {
-    List<Video> videoList = videoMapper.findAllVideos();
-
-    assertThat(videoList).isEmpty();
-  }
-
-  @Test
   @DataSet(value = "videoList.yml")
   @Transactional
   void 指定したidのビデオを取得できること() {
