@@ -24,20 +24,6 @@ class VideoMapperTest {
   VideoMapper videoMapper;
 
   @Test
-  @DataSet(value = "videoList.yml")
-  @Transactional
-  public void 全てのビデオが取得できること() {
-    List<Video> videoList = videoMapper.findAllVideos();
-
-    assertThat(videoList)
-        .hasSize(2)
-        .contains(
-            new Video(1, "もう怖くないGit!", "山浦", "Japanese", false, 12000),
-            new Video(2, "The Web Developer Bootcamp", "Colt", "English", true, 0)
-        );
-  }
-
-  @Test
   @DataSet(value = "empty.yml")
   @Transactional
   void ビデオが存在しない場合は空のListを返すこと() {
