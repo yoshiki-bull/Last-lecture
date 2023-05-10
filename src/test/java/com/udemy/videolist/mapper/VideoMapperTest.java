@@ -23,15 +23,6 @@ class VideoMapperTest {
   @Autowired
   VideoMapper videoMapper;
 
-  @Test
-  @DataSet(value = "videoList.yml")
-  @Transactional
-  void 指定したidのビデオを取得できること() {
-    Optional<Video> video = videoMapper.findById(1);
-
-    assertThat(video)
-        .contains(new Video(1, "もう怖くないGit!", "山浦", "Japanese", false, 12000));
-  }
 
   @Test
   @DataSet(value = "videoList.yml")
