@@ -12,7 +12,8 @@ record VideoCreateResponse(
     int price) {
 
   public VideoCreateResponse(Video video) {
-    this("video successfully created",
+    this(
+        "video successfully created",
         video.getId(),
         video.getTitle(),
         video.getInstructor(),
