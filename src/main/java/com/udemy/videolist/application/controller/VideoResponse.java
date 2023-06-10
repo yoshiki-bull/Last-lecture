@@ -1,6 +1,6 @@
 package com.udemy.videolist.application.controller;
 
-import com.udemy.videolist.model.Video;
+import com.udemy.videolist.domain.model.Video;
 
 record VideoResponse(
     int id,

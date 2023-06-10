@@ -1,6 +1,6 @@
-package com.udemy.videolist.service;
+package com.udemy.videolist.domain.service;
 
-import com.udemy.videolist.model.Video;
+import com.udemy.videolist.domain.model.Video;
 import java.util.List;
 
 public interface VideoService {

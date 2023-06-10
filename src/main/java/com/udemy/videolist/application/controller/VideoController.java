@@ -2,8 +2,8 @@ package com.udemy.videolist.application.controller;
 
 import com.udemy.videolist.application.form.CreateForm;
 import com.udemy.videolist.application.form.UpdateForm;
-import com.udemy.videolist.model.Video;
-import com.udemy.videolist.service.VideoService;
+import com.udemy.videolist.domain.model.Video;
+import com.udemy.videolist.domain.service.VideoService;
 import java.net.URI;
 import java.util.List;
 import lombok.RequiredArgsConstructor;

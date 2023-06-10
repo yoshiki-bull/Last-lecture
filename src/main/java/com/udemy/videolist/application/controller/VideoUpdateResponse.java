@@ -1,7 +1,6 @@
 package com.udemy.videolist.application.controller;
 
-import com.udemy.videolist.model.Video;
-import lombok.Getter;
+import com.udemy.videolist.domain.model.Video;
 
 record VideoUpdateResponse(
     String message,

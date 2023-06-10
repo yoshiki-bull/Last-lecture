@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.udemy.videolist.mapper.VideoMapper">
+<mapper namespace="com.udemy.videolist.infrastructure.mapper.VideoMapper">
 
-    <resultMap id="videoMap" type="com.udemy.videolist.model.Video">
+    <resultMap id="videoMap" type="com.udemy.videolist.domain.model.Video">
         <id property="id" column="id"/>
         <result property="title" column="title"/>
         <result property="instructor" column="instructor"/>

@@ -1,8 +1,8 @@
-package com.udemy.videolist.service;
+package com.udemy.videolist.domain.service;
 
 import com.udemy.videolist.application.exception.VideoNotFoundException;
-import com.udemy.videolist.mapper.VideoMapper;
-import com.udemy.videolist.model.Video;
+import com.udemy.videolist.domain.model.Video;
+import com.udemy.videolist.infrastructure.mapper.VideoMapper;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
