@@ -60,11 +60,11 @@ run: docker compose up -d
 ```
 run: ./gradlew test
 ```
-| 生成物 | 詳細 |
-|---| --- |
+| 機能/生成物         | 詳細 |
+|----------------| --- |
 | コンパイルされたソースコード | クラスファイルが<br>`build/classes/test/`配下に生成される |
-| テスト結果レポート | テストの実行結果をまとめたレポート`index.html`が<br>`build/reports/tests`配下に生成される |
-| JUnitテストレポート | JUnitテストのテストレポートがXML形式で<br>`**/build/test-results/test/TEST-*.xml`として生成される |
+| テスト結果レポート      | テストの実行結果をまとめたレポート`index.html`が<br>`build/reports/tests`配下に生成される |
+| JUnitテストレポート   | JUnitテストのテストレポートがXML形式で<br>`**/build/test-results/test/TEST-*.xml`として生成される |
 
 - **Step 5: JUnitテストレポートを収集しテスト結果をPRのChecksに報告する**
 ```
@@ -73,8 +73,27 @@ with:
   report_paths: '**/build/test-results/test/TEST-*.xml'
 ```
 
-| 生成物 | 詳細                                                                                              |
-| --- |-------------------------------------------------------------------------------------------------|
+| 機能/生成物 | 詳細                                                                                              |
+|--------|-------------------------------------------------------------------------------------------------|
 | Checks | PRのChecksに結果を表示してくれる ![checks](images/checks.png)                                               |
 | テスト成功時 | テスト成功時は`Summary`に`Artifacts`を生成する ![success](images/artifacts.png)                              |
 | テスト失敗時 | テスト失敗時は`Summary`に`Annotations`を生成し、<br>どのテストが失敗してるか教えてくれる(PR上で確認可能) ![failed](images/error.png) |
+
+- **Step 6: lintツール(Checkstyle)でソースコードに問題がないか確認する**
+```
+uses: nikitasavinov/checkstyle-action@master
+with:
+  github_token: ${{ secrets.GITHUB_TOKEN }}
+  reporter: 'github-pr-check'
+  tool_name: 'reviewdog-checkstyle'
+  level: info
+  checkstyle_config: 'config/checkstyle/checkstyle.xml'
+  workdir: 'src/main'
+```
+
+| 機能            | 詳細                                                                                         |
+|---------------|--------------------------------------------------------------------------------------------|
+| Checkstyle    | CheckstyleはJavaのソースコードがコーディング規約に<br>即しているかどうか確認するためのlint(静的解析)ツール。                         |
+| Checkstyleの実行 | このアクションは指定したCheckstyleを実行する。                                                               |
+| Reviewdog     | Reviewdogはlintツールの結果を受け取り、<br>PRの差分に対してコメントを生成してくれるツール。 ![Reviewdog](images/reviewdog.png) |
+| Reviewdogの利用  | このアクションはReviewdogにCheckstyleの実行結果を送信する。                                                    |
