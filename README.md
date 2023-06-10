@@ -74,10 +74,10 @@ run: ./gradlew test
 uses: mikepenz/action-junit-report@v3
 ```
 
-| 機能      | 説明                                                                                     |
-|---------|----------------------------------------------------------------------------------------|
-| Checks  | PRのChecksに結果を表示してくれる ![checks](images/checks.png)                                      |
-| テスト失敗   | テスト失敗時に`Annotations`を生成し、<br>どのテストが失敗してるか教えてくれる(PR上で確認可能) ![failed](images/failed.png) |
+| 機能      | 説明                                                                               |
+|---------|----------------------------------------------------------------------------------|
+| Checks  | PRのChecksに結果を表示してくれる ![checks](images/checks.png)                                |
+| テスト失敗   | テスト失敗時に`Annotations`を生成し、<br>PR上でどのテストが失敗したのか教えてくれる ![failed](images/failed.png) |
 
 - **Step 6: lintツール(Checkstyle)でコーディングスタイルに問題がないか確認する**
 
