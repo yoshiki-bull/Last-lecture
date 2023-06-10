@@ -25,6 +25,7 @@
 ### GitHub Actionsを用いた自動CI
 
 - **Event**
+
 ```
 on:
   push:
@@ -33,16 +34,19 @@ on:
 ```
 
 - **Runner**
+
 ```
  runs-on: ubuntu-latest
 ```
 
 - **Step 1: リポジトリのチェックアウト**
+
 ```
 uses: actions/checkout@v3
 ```
 
 - **Step 2: 指定したオプションのJDKをセットアップする**
+
 ```
 uses: actions/setup-java@v3
   with:
@@ -52,34 +56,37 @@ uses: actions/setup-java@v3
 ```
 
 - **Step 3: Dockerコンテナを起動させる**
+
 ```
 run: docker compose up -d
 ```
 
 - **Step 4: testタスクを実行する**
+
 ```
 run: ./gradlew test
 ```
-| 機能         | 説明 |
-|----------------| --- |
-| コンパイルされたソースコード | クラスファイルが<br>`build/classes/test/`配下に生成される |
-| テスト結果レポート      | テストの実行結果をまとめたレポート`index.html`が<br>`build/reports/tests`配下に生成される |
-| JUnitテストレポート   | JUnitテストのテストレポートがXML形式で<br>`**/build/test-results/test/TEST-*.xml`として生成される |
+| 機能              | 説明                                                                         |
+|-----------------|----------------------------------------------------------------------------|
+| コンパイルされたソースコード  | クラスファイルが<br>`build/classes/test/`配下に生成される                                  |
+| テスト結果レポート       | テストの実行結果をまとめたレポート`index.html`が<br>`build/reports/tests`配下に生成される            |
+| JUnitテストレポート    | JUnitテストのテストレポートがXML形式で<br>`**/build/test-results/test/TEST-*.xml`として生成される |
 
 - **Step 5: JUnitテストレポートを収集しテスト結果をPRのChecksに報告する**
+
 ```
 uses: mikepenz/action-junit-report@v3
 with:
   report_paths: '**/build/test-results/test/TEST-*.xml'
 ```
 
-| 機能 | 説明                                                                                               |
-|--------|--------------------------------------------------------------------------------------------------|
-| Checks | PRのChecksに結果を表示してくれる ![checks](images/checks.png)                                                |
-| テスト成功時 | テスト成功時は`Summary`に`Artifacts`を生成する ![success](images/artifacts.png)                               |
-| テスト失敗時 | テスト失敗時は`Summary`に`Annotations`を生成し、<br>どのテストが失敗してるか教えてくれる(PR上で確認可能) ![failed](images/failed.png) |
+| 機能      | 説明                                                                                     |
+|---------|----------------------------------------------------------------------------------------|
+| Checks  | PRのChecksに結果を表示してくれる ![checks](images/checks.png)                                      |
+| テスト失敗   | テスト失敗時に`Annotations`を生成し、<br>どのテストが失敗してるか教えてくれる(PR上で確認可能) ![failed](images/failed.png) |
 
-- **Step 6: lintツール(Checkstyle)でソースコードに問題がないか確認する**
+- **Step 6: lintツール(Checkstyle)でコーディングスタイルに問題がないか確認する**
+
 ```
 uses: nikitasavinov/checkstyle-action@master
 with:
@@ -99,6 +106,7 @@ with:
 | Reviewdogの利用  | このアクションはReviewdogにCheckstyleの実行結果を送信する。                                                    |
 
 - **Step 7: テストカバレッジを収集しCodecovにアップロードする**
+
 ```
 uses: codecov/codecov-action@v3
 if: always()
@@ -106,10 +114,10 @@ with:
   token: ${{ secrets.CODECOV_TOKEN }}
 ```
 
-| 機能         | 説明                                                                                                                          |
-|------------|-----------------------------------------------------------------------------------------------------------------------------|
-| Codecov    | テストカバレッジを収集しグラフやレポートとして可視化するためのサービス。                                                                                        |
-| Codecovの利用 | このアクションは`build/reports/jacoco/test/jacocoTestReport.xml`から<br>テストカバレッジを収集し、Codecovにアップロードする。 ![codecov](images/codecov.png) |
+| 機能         | 説明                                                                                           |
+|------------|----------------------------------------------------------------------------------------------|
+| Codecov    | テストカバレッジを収集しグラフやレポートとして可視化するためのサービス。                                                         |
+| Codecovの利用 | このアクションは`build/reports/jacoco/test/jacocoTestReport.xml`から<br>テストカバレッジを収集し、Codecovにアップロードする。 |
 
 - **Step 8: lintツール(SpotBugs)でソースコードにバグパターンがないか確認する**
 
@@ -126,6 +134,20 @@ with:
   path: build/reports/spotbugs/main.html
 ```
 
-| 機能        | 説明                                                                          |
-|-----------|-----------------------------------------------------------------------------|
-| Artifacts | このアクションは指定したファイルやディレクトリを<br>アーティファクトとしてパッケージ化しGitHubにアップロードする ![Artifact]() |
+| 機能        | 説明                                                                                              |
+|-----------|-------------------------------------------------------------------------------------------------|
+| Artifacts | このアクションは指定したファイルやディレクトリを<br>アーティファクトとしてパッケージ化しGitHubにアップロードする ![Artifact](images/artifacts.png) |
+
+- **Step 10: CIの結果をDiscordに通知する**
+
+```
+uses: sarisia/actions-status-discord@v1
+if: always()
+with:
+  webhook: ${{ secrets.DISCORD_WEBHOOK }}
+  status: ${{ job.status }}
+  title: "Continuous Integration"
+  color: "#e9ff70"
+  url: "https://github.com/sarisia/actions-status-discord"
+  username: GitHub Actions
+```
