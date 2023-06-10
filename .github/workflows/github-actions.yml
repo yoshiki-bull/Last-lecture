@@ -62,7 +62,7 @@ jobs:
         uses: actions/upload-artifact@v1
         if: always()
         with:
-          name: test results
+          name: spotbugs-result
           path: build/reports/spotbugs/main.html
 
       - name: Discord Notification

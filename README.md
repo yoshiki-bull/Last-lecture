@@ -60,7 +60,7 @@ run: docker compose up -d
 ```
 run: ./gradlew test
 ```
-| 機能/生成物         | 詳細 |
+| 機能         | 説明 |
 |----------------| --- |
 | コンパイルされたソースコード | クラスファイルが<br>`build/classes/test/`配下に生成される |
 | テスト結果レポート      | テストの実行結果をまとめたレポート`index.html`が<br>`build/reports/tests`配下に生成される |
@@ -73,11 +73,11 @@ with:
   report_paths: '**/build/test-results/test/TEST-*.xml'
 ```
 
-| 機能/生成物 | 詳細                                                                                              |
-|--------|-------------------------------------------------------------------------------------------------|
-| Checks | PRのChecksに結果を表示してくれる ![checks](images/checks.png)                                               |
-| テスト成功時 | テスト成功時は`Summary`に`Artifacts`を生成する ![success](images/artifacts.png)                              |
-| テスト失敗時 | テスト失敗時は`Summary`に`Annotations`を生成し、<br>どのテストが失敗してるか教えてくれる(PR上で確認可能) ![failed](images/error.png) |
+| 機能 | 説明                                                                                               |
+|--------|--------------------------------------------------------------------------------------------------|
+| Checks | PRのChecksに結果を表示してくれる ![checks](images/checks.png)                                                |
+| テスト成功時 | テスト成功時は`Summary`に`Artifacts`を生成する ![success](images/artifacts.png)                               |
+| テスト失敗時 | テスト失敗時は`Summary`に`Annotations`を生成し、<br>どのテストが失敗してるか教えてくれる(PR上で確認可能) ![failed](images/failed.png) |
 
 - **Step 6: lintツール(Checkstyle)でソースコードに問題がないか確認する**
 ```
@@ -91,9 +91,41 @@ with:
   workdir: 'src/main'
 ```
 
-| 機能            | 詳細                                                                                         |
+| 機能            | 説明                                                                                         |
 |---------------|--------------------------------------------------------------------------------------------|
 | Checkstyle    | CheckstyleはJavaのソースコードがコーディング規約に<br>即しているかどうか確認するためのlint(静的解析)ツール。                         |
 | Checkstyleの実行 | このアクションは指定したCheckstyleを実行する。                                                               |
 | Reviewdog     | Reviewdogはlintツールの結果を受け取り、<br>PRの差分に対してコメントを生成してくれるツール。 ![Reviewdog](images/reviewdog.png) |
 | Reviewdogの利用  | このアクションはReviewdogにCheckstyleの実行結果を送信する。                                                    |
+
+- **Step 7: テストカバレッジを収集しCodecovにアップロードする**
+```
+uses: codecov/codecov-action@v3
+if: always()
+with:
+  token: ${{ secrets.CODECOV_TOKEN }}
+```
+
+| 機能         | 説明                                                                                                                          |
+|------------|-----------------------------------------------------------------------------------------------------------------------------|
+| Codecov    | テストカバレッジを収集しグラフやレポートとして可視化するためのサービス。                                                                                        |
+| Codecovの利用 | このアクションは`build/reports/jacoco/test/jacocoTestReport.xml`から<br>テストカバレッジを収集し、Codecovにアップロードする。 ![codecov](images/codecov.png) |
+
+- **Step 8: lintツール(SpotBugs)でソースコードにバグパターンがないか確認する**
+
+```
+run: ./gradlew spotbugsMain
+```
+
+- **Step 9: SpotBugsの結果をGitHub上にアップロードする**
+
+```
+uses: actions/upload-artifact@v1
+with:
+  name: spotbugs-result
+  path: build/reports/spotbugs/main.html
+```
+
+| 機能        | 説明                                                                          |
+|-----------|-----------------------------------------------------------------------------|
+| Artifacts | このアクションは指定したファイルやディレクトリを<br>アーティファクトとしてパッケージ化しGitHubにアップロードする ![Artifact]() |
