@@ -49,10 +49,6 @@ uses: actions/checkout@v3
 
 ```
 uses: actions/setup-java@v3
-  with:
-    java-version: '17'
-    distribution: 'temurin'
-    cache: 'gradle'
 ```
 
 - **Step 3: Dockerコンテナを起動させる**
@@ -76,8 +72,6 @@ run: ./gradlew test
 
 ```
 uses: mikepenz/action-junit-report@v3
-with:
-  report_paths: '**/build/test-results/test/TEST-*.xml'
 ```
 
 | 機能      | 説明                                                                                     |
@@ -89,13 +83,6 @@ with:
 
 ```
 uses: nikitasavinov/checkstyle-action@master
-with:
-  github_token: ${{ secrets.GITHUB_TOKEN }}
-  reporter: 'github-pr-check'
-  tool_name: 'reviewdog-checkstyle'
-  level: info
-  checkstyle_config: 'config/checkstyle/checkstyle.xml'
-  workdir: 'src/main'
 ```
 
 | 機能            | 説明                                                                                         |
@@ -109,9 +96,6 @@ with:
 
 ```
 uses: codecov/codecov-action@v3
-if: always()
-with:
-  token: ${{ secrets.CODECOV_TOKEN }}
 ```
 
 | 機能         | 説明                                                                                           |
@@ -129,9 +113,6 @@ run: ./gradlew spotbugsMain
 
 ```
 uses: actions/upload-artifact@v1
-with:
-  name: spotbugs-result
-  path: build/reports/spotbugs/main.html
 ```
 
 | 機能        | 説明                                                                                              |
@@ -142,13 +123,6 @@ with:
 
 ```
 uses: sarisia/actions-status-discord@v1
-if: always()
-with:
-  webhook: ${{ secrets.DISCORD_WEBHOOK }}
-  status: ${{ job.status }}
-  title: "Continuous Integration"
-  url: "https://github.com/sarisia/actions-status-discord"
-  username: GitHub Actions
 ```
 
 ![Notification](images/notification.png)
