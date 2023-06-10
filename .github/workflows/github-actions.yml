@@ -72,6 +72,5 @@ jobs:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           status: ${{ job.status }}
           title: "Continuous Integration"
-          color: 0xb513f0
           url: "https://github.com/sarisia/actions-status-discord"
           username: GitHub Actions
