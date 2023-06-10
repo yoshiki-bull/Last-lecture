@@ -62,7 +62,7 @@ jobs:
         uses: actions/upload-artifact@v1
         if: always()
         with:
-          name: test results
+          name: spotbugs-result
           path: build/reports/spotbugs/main.html
 
       - name: Discord Notification
@@ -72,7 +72,5 @@ jobs:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           status: ${{ job.status }}
           title: "Continuous Integration"
-          description: "Build to GitHub Pages"
-          color: "#48f442"
           url: "https://github.com/sarisia/actions-status-discord"
           username: GitHub Actions
