@@ -7,7 +7,7 @@
 
 ## こだわり
 - Record Classの使用[（リンク）](https://github.com/yoshiki-bull/Last-lecture-Java/pull/10#issue-1725112384)
--
+- 
 
 ## 使用技術
 - Java 17.0.5
@@ -150,3 +150,6 @@ with:
   url: "https://github.com/sarisia/actions-status-discord"
   username: GitHub Actions
 ```
+
+![Notification](images/notification.png)
+
