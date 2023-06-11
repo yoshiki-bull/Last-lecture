@@ -7,7 +7,7 @@
 
 ## こだわり
 - Record Classの使用[（リンク）](https://github.com/yoshiki-bull/Last-lecture-Java/pull/10#issue-1725112384)
-- 3層アーキテクチャに基づいた設計
+- 3層アーキテクチャに基づいた設計[(リンク)](https://terasolunaorg.github.io/guideline/current/ja/Overview/ApplicationLayering.html)
 
 ## 使用技術
 - Java 17.0.5
@@ -108,6 +108,7 @@ run: ./gradlew test
 | テスト結果レポート       | テストの実行結果をまとめたレポート`index.html`が<br>`build/reports/tests`配下に生成される            |
 | JUnitテストレポート    | JUnitテストのテストレポートがXML形式で<br>`**/build/test-results/test/TEST-*.xml`として生成される |
 </details>
+<br>
 
 - **Step 5: JUnitテストレポートを収集しテスト結果をPRのChecksに報告する**
 
@@ -123,6 +124,7 @@ uses: mikepenz/action-junit-report@v3
 | Checks  | PRのChecksに結果を表示してくれる ![checks](images/checks.png)                                |
 | テスト失敗   | テスト失敗時に`Annotations`を生成し、<br>PR上でどのテストが失敗したのか教えてくれる ![failed](images/failed.png) |
 </details>
+<br>
 
 - **Step 6: lintツール(Checkstyle)でコーディングスタイルに問題がないか確認する**
 
@@ -140,6 +142,7 @@ uses: nikitasavinov/checkstyle-action@master
 | Reviewdog     | Reviewdogはlintツールの結果を受け取り、<br>PRの差分に対してコメントを生成してくれるツール。 ![Reviewdog](images/reviewdog.png) |
 | Reviewdogの利用  | このアクションはReviewdogにCheckstyleの実行結果を送信する。                                                    |
 </details>
+<br>
 
 - **Step 7: テストカバレッジを収集しCodecovにアップロードする**
 
@@ -155,12 +158,14 @@ uses: codecov/codecov-action@v3
 | Codecov    | テストカバレッジを収集しグラフやレポートとして可視化するためのサービス。                                                         |
 | Codecovの利用 | このアクションは`build/reports/jacoco/test/jacocoTestReport.xml`から<br>テストカバレッジを収集し、Codecovにアップロードする。 |
 </details>
+<br>
 
 - **Step 8: lintツール(SpotBugs)でソースコードにバグパターンがないか確認する**
 
 ```
 run: ./gradlew spotbugsMain
 ```
+<br>
 
 - **Step 9: SpotBugsの結果をGitHub上にアップロードする**
 
@@ -174,6 +179,7 @@ uses: actions/upload-artifact@v1
 |-----------|--------------------------------------------------------------------------------------------------|
 | Artifacts | このアクションは指定したファイルやディレクトリを<br>アーティファクトとしてパッケージ化しGitHub上にアップロードする ![Artifact](images/artifacts.png) |
 </details>
+<br>
 
 - **Step 10: CIの結果をDiscordに通知する**
 
