@@ -7,7 +7,7 @@
 
 ## こだわり
 - Record Classの使用[（リンク）](https://github.com/yoshiki-bull/Last-lecture-Java/pull/10#issue-1725112384)
-- アーキテクチャ
+- 3層アーキテクチャに基づいた設計
 
 ## 使用技術
 - Java 17.0.5
@@ -149,6 +149,7 @@ uses: codecov/codecov-action@v3
 
 <details>
 <summary>機能</summary>
+
 | 機能         | 説明                                                                                           |
 |------------|----------------------------------------------------------------------------------------------|
 | Codecov    | テストカバレッジを収集しグラフやレポートとして可視化するためのサービス。                                                         |
@@ -179,6 +180,10 @@ uses: actions/upload-artifact@v1
 ```
 uses: sarisia/actions-status-discord@v1
 ```
+<details>
+<summary>機能</summary>
 
-![Notification](images/notification.png)
-
+| 機能         | 説明                                                                                      |
+|------------|-----------------------------------------------------------------------------------------|
+| Discordに通知 | このアクションはCI/CDの結果をDiscordに通知してくれる<br>(オプションが豊富) ![Notification](images/notification.png) |
+</details>
