@@ -131,7 +131,7 @@ uses: mikepenz/action-junit-report@v3
 </details>
 <br>
 
-- **Step 6: lintツール(Checkstyle)でコーディングスタイルに問題がないか確認する**
+- **Step 6: Checkstyleでコーディングスタイルに問題がないか確認する**
 
 ```
 uses: nikitasavinov/checkstyle-action@master
@@ -165,7 +165,7 @@ uses: codecov/codecov-action@v3
 </details>
 <br>
 
-- **Step 8: lintツール(SpotBugs)でソースコードにバグパターンがないか確認する**
+- **Step 8: SpotBugsでソースコードにバグパターンがないか確認する**
 
 ```
 run: ./gradlew spotbugsMain
