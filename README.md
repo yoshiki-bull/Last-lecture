@@ -68,30 +68,35 @@ on:
     branches: [main]
   pull_request:
 ```
+<br>
 
 - **Runner**
 
 ```
  runs-on: ubuntu-latest
 ```
+<br>
 
 - **Step 1: リポジトリのチェックアウト**
 
 ```
 uses: actions/checkout@v3
 ```
+<br>
 
 - **Step 2: 指定したオプションのJDKをセットアップする**
 
 ```
 uses: actions/setup-java@v3
 ```
+<br>
 
 - **Step 3: Dockerコンテナを起動させる**
 
 ```
 run: docker compose up -d
 ```
+<br>
 
 - **Step 4: testタスクを実行する**
 
