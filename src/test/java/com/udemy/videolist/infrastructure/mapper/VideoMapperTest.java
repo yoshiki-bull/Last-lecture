@@ -1,4 +1,4 @@
-package com.udemy.videolist.mapper;
+package com.udemy.videolist.infrastructure.mapper;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import com.github.database.rider.core.api.dataset.DataSet;
 import com.github.database.rider.core.api.dataset.ExpectedDataSet;
 import com.github.database.rider.spring.api.DBRider;
-import com.udemy.videolist.model.Video;
+import com.udemy.videolist.domain.model.Video;
 import java.util.List;
 import java.util.Optional;
 import org.junit.jupiter.api.Test;

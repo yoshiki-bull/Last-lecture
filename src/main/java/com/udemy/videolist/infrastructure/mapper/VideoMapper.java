@@ -1,6 +1,6 @@
-package com.udemy.videolist.mapper;
+package com.udemy.videolist.infrastructure.mapper;
 
-import com.udemy.videolist.model.Video;
+import com.udemy.videolist.domain.model.Video;
 import java.util.List;
 import java.util.Optional;
 import org.apache.ibatis.annotations.Delete;

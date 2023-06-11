@@ -1,8 +1,8 @@
-package com.udemy.videolist.application.controller;
+package com.udemy.videolist.application.response;
 
-import com.udemy.videolist.model.Video;
+import com.udemy.videolist.domain.model.Video;
 
-record VideoResponse(
+public record VideoResponse(
     int id,
     String title,
     String instructor,

@@ -2,8 +2,11 @@ package com.udemy.videolist.application.controller;
 
 import com.udemy.videolist.application.form.CreateForm;
 import com.udemy.videolist.application.form.UpdateForm;
-import com.udemy.videolist.model.Video;
-import com.udemy.videolist.service.VideoService;
+import com.udemy.videolist.application.response.VideoCreateResponse;
+import com.udemy.videolist.application.response.VideoResponse;
+import com.udemy.videolist.application.response.VideoUpdateResponse;
+import com.udemy.videolist.domain.model.Video;
+import com.udemy.videolist.domain.service.VideoService;
 import java.net.URI;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -30,7 +33,6 @@ public class VideoController {
   @GetMapping("/{id}")
   public VideoResponse findById(@PathVariable("id") Integer id) {
     return new VideoResponse(videoService.findById(id));
-
   }
 
   @GetMapping("/search")

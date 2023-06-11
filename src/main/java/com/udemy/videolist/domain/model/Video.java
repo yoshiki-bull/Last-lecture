@@ -1,4 +1,4 @@
-package com.udemy.videolist.model;
+package com.udemy.videolist.domain.model;
 
 import java.util.Objects;
 import lombok.AllArgsConstructor;
