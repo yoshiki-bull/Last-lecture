@@ -1,18 +1,20 @@
-package com.udemy.videolist.application.controller;
+package com.udemy.videolist.application.response;
 
 import com.udemy.videolist.domain.model.Video;
 
-record VideoUpdateResponse(
+public record VideoCreateResponse(
     String message,
+    int id,
     String title,
     String instructor,
     String language,
     Boolean isFree,
     int price) {
 
-  public VideoUpdateResponse(Video video) {
+  public VideoCreateResponse(Video video) {
     this(
-        "video successfully updated",
+        "video successfully created",
+        video.getId(),
         video.getTitle(),
         video.getInstructor(),
         video.getLanguage(),
