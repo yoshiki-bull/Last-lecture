@@ -47,14 +47,14 @@ public class VideoRestApiIntegrationTest {
             "id": 1,
             "title": "もう怖くないGit!",
             "instructor": "山浦",
-            "language": "Japanese",
+            "language": "ja",
             "price": 12000
         },
         {
             "id": 2,
             "title": "The Web Developer Bootcamp",
             "instructor": "Colt",
-            "language": "English",
+            "language": "en",
             "price": 0
         }]
         """, jsonResponse, true);
@@ -78,7 +78,7 @@ public class VideoRestApiIntegrationTest {
             "id": 1,
             "title": "もう怖くないGit!",
             "instructor": "山浦",
-            "language": "Japanese",
+            "language": "ja",
             "price": 12000
         }""", jsonResponse, true);
   }
@@ -117,7 +117,7 @@ public class VideoRestApiIntegrationTest {
   @Transactional
   @DataSet(value = "videoList.yml")
   void 言語のみを指定した場合に指定した言語のビデオのみがJSON配列形式で取得できること() throws Exception {
-    String url = "/api/videos/search?lang=Japanese";
+    String url = "/api/videos/search?lang=ja";
     String jsonResponse = mockMvc.perform(MockMvcRequestBuilders
                 .get(url)
                 .accept(MediaType.APPLICATION_JSON_VALUE))
@@ -129,7 +129,7 @@ public class VideoRestApiIntegrationTest {
             "id": 1,
             "title": "もう怖くないGit!",
             "instructor": "山浦",
-            "language": "Japanese",
+            "language": "ja",
             "price": 12000
         }]
         """, jsonResponse, true);
@@ -153,7 +153,7 @@ public class VideoRestApiIntegrationTest {
             "id": 2,
             "title": "The Web Developer Bootcamp",
             "instructor": "Colt",
-            "language": "English",
+            "language": "en",
             "price": 0
         }]
         """, jsonResponse, true);
@@ -163,7 +163,7 @@ public class VideoRestApiIntegrationTest {
   @Transactional
   @DataSet("videoList.yml")
   void 指定した言語かつ無料状態であるビデオのみがJSON配列形式で取得できること() throws Exception {
-    String url = "/api/videos/search?lang=English&is_free=true";
+    String url = "/api/videos/search?lang=en&is_free=true";
     String jsonResponse = mockMvc.perform(MockMvcRequestBuilders
             .get(url)
             .accept(MediaType.APPLICATION_JSON_VALUE))
@@ -177,7 +177,7 @@ public class VideoRestApiIntegrationTest {
             "id": 2,
             "title": "The Web Developer Bootcamp",
             "instructor": "Colt",
-            "language": "English",
+            "language": "en",
             "price": 0
         }]
         """, jsonResponse, true);
@@ -196,7 +196,7 @@ public class VideoRestApiIntegrationTest {
                 {
                     "title": "もう怖くないLinux",
                     "instructor": "山浦",
-                    "language": "Japanese",
+                    "language": "ja",
                     "isFree": true,
                     "price": "0"
                 }
@@ -213,7 +213,7 @@ public class VideoRestApiIntegrationTest {
             "id": %d,
             "title": "もう怖くないLinux",
             "instructor": "山浦",
-            "language": "Japanese",
+            "language": "ja",
             "isFree": true,
             "price": 0
         }
@@ -235,7 +235,7 @@ public class VideoRestApiIntegrationTest {
                 {
                     "title": "もう怖くないLinux",
                     "instructor": "山浦",
-                    "language": "Japanese",
+                    "language": "ja",
                     "isFree": true,
                     "price": "0"
                 }
@@ -250,7 +250,7 @@ public class VideoRestApiIntegrationTest {
             "message": "video successfully updated",
             "title": "もう怖くないLinux",
             "instructor": "山浦",
-            "language": "Japanese",
+            "language": "ja",
             "isFree": true,
             "price": 0
         }
@@ -274,7 +274,7 @@ public class VideoRestApiIntegrationTest {
                 {
                     "title": "もう怖くないLinux",
                     "instructor": "山浦",
-                    "language": "Japanese",
+                    "language": "ja",
                     "isFree": true,
                     "price": "0"
                 }

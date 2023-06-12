@@ -16,6 +16,6 @@ videos:
   - id: 3
     title: "もう怖くないLinux"
     instructor: "山浦"
-    language: "Japanese"
+    language: "ja"
     is_free: 1
     price: 0
