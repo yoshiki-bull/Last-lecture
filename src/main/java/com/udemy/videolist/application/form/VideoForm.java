@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Length;
 
-public class CreateForm {
+public class VideoForm {
 
   @NotBlank(message = "{form.notblank}")
   @Length(max = 100, message = "{form.title.length}")
@@ -16,7 +16,7 @@ public class CreateForm {
   private String instructor;
 
   @NotBlank(message = "{form.notblank}")
-  @Length(max = 100, message = "{form.language.length}")
+  @Length(min = 2, max = 2, message = "{form.language.length}")
   private String language;
 
   @NotNull(message = "{form.notnull}")

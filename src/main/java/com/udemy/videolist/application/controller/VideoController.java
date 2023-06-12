@@ -1,7 +1,6 @@
 package com.udemy.videolist.application.controller;
 
-import com.udemy.videolist.application.form.CreateForm;
-import com.udemy.videolist.application.form.UpdateForm;
+import com.udemy.videolist.application.form.VideoForm;
 import com.udemy.videolist.application.response.VideoCreateResponse;
 import com.udemy.videolist.application.response.VideoResponse;
 import com.udemy.videolist.application.response.VideoUpdateResponse;
@@ -44,7 +43,7 @@ public class VideoController {
 
   @PostMapping
   public ResponseEntity<VideoCreateResponse> createVideo(
-      @RequestBody @Validated CreateForm form, UriComponentsBuilder builder) {
+      @RequestBody @Validated VideoForm form, UriComponentsBuilder builder) {
     Video video = new Video(
         form.getTitle(),
         form.getInstructor(),
@@ -64,7 +63,7 @@ public class VideoController {
 
   @PatchMapping("/{id}")
   public ResponseEntity<VideoUpdateResponse> updateVideo(
-      @PathVariable("id") Integer id, @RequestBody @Validated UpdateForm form) {
+      @PathVariable("id") Integer id, @RequestBody @Validated VideoForm form) {
     Video video = new Video(
         form.getTitle(),
         form.getInstructor(),

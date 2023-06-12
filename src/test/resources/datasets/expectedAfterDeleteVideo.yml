@@ -2,6 +2,6 @@ videos:
   - id: 2
     title: "The Web Developer Bootcamp"
     instructor: "Colt"
-    language: "English"
+    language: "en"
     is_free: 1
     price: 0

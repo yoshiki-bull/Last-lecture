@@ -32,8 +32,8 @@ class VideoMapperTest {
     assertThat(videoList)
         .hasSize(2)
         .contains(
-            new Video(1, "もう怖くないGit!", "山浦", "Japanese", false, 12000),
-            new Video(2, "The Web Developer Bootcamp", "Colt", "English", true, 0)
+            new Video(1, "もう怖くないGit!", "山浦", "ja", false, 12000),
+            new Video(2, "The Web Developer Bootcamp", "Colt", "en", true, 0)
         );
   }
 
@@ -53,7 +53,7 @@ class VideoMapperTest {
     Optional<Video> video = videoMapper.findById(1);
 
     assertThat(video)
-        .contains(new Video(1, "もう怖くないGit!", "山浦", "Japanese", false, 12000));
+        .contains(new Video(1, "もう怖くないGit!", "山浦", "ja", false, 12000));
   }
 
   @Test
@@ -69,10 +69,10 @@ class VideoMapperTest {
   @DataSet(value = "videoList.yml")
   @Transactional
   void 指定した言語のビデオのみが取得できること() {
-    List<Video> video = videoMapper.findByLanguage("English");
+    List<Video> video = videoMapper.findByLanguage("en");
 
     assertThat(video)
-        .contains(new Video(2, "The Web Developer Bootcamp", "Colt", "English", true, 0));
+        .contains(new Video(2, "The Web Developer Bootcamp", "Colt", "en", true, 0));
   }
 
   @Test
@@ -82,17 +82,17 @@ class VideoMapperTest {
     List<Video> video = videoMapper.findByIsFree(true);
 
     assertThat(video)
-        .contains(new Video(2, "The Web Developer Bootcamp", "Colt", "English", true, 0));
+        .contains(new Video(2, "The Web Developer Bootcamp", "Colt", "en", true, 0));
   }
 
   @Test
   @DataSet(value = "videoList.yml")
   @Transactional
   void 指定した言語と有料か無料のビデオのみが取得できること() {
-    List<Video> video = videoMapper.findByLanguageAndIsFree("English", true);
+    List<Video> video = videoMapper.findByLanguageAndIsFree("en", true);
 
     assertThat(video)
-        .contains(new Video(2, "The Web Developer Bootcamp", "Colt", "English", true, 0));
+        .contains(new Video(2, "The Web Developer Bootcamp", "Colt", "en", true, 0));
   }
 
   @Test
@@ -100,13 +100,13 @@ class VideoMapperTest {
   @DataSet(value = "videoList.yml")
   @ExpectedDataSet(value = "autoIncrementID.yml", ignoreCols = "id")
   void DBに新規ビデオが登録された際にidが自動で増加的に採番されること() {
-    Video video3 = new Video("もう怖くないLinux", "山浦", "Japanese", true, 0);
+    Video video3 = new Video("もう怖くないLinux", "山浦", "ja", true, 0);
     assertThat(video3.getId()).isNull();
 
     videoMapper.createVideo(video3);
     assertThat(video3.getId()).isNotNull();
 
-    Video video4 = new Video("Mockito", "Mike", "English", true, 0);
+    Video video4 = new Video("Mockito", "Mike", "en", true, 0);
     assertThat(video4.getId()).isNull();
 
     videoMapper.createVideo(video4);
@@ -122,7 +122,7 @@ class VideoMapperTest {
   @DataSet(value = "videoList.yml")
   @ExpectedDataSet(value = "expectedAfterUpdateVideo.yml")
   void 指定したidのビデオ情報が更新できること() {
-    Video video = new Video("もう怖くないLinux", "山浦", "Japanese", true, 0);
+    Video video = new Video("もう怖くないLinux", "山浦", "ja", true, 0);
 
     videoMapper.updateVideo(1, video);
   }
