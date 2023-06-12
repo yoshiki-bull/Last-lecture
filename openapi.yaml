@@ -1,0 +1,293 @@
+openapi: "3.0.0"
+info:
+  title: Video API Document
+  version: "0.0.1"
+  description: Video APIのドキュメントです
+tags:
+  - name: videos
+    description: ビデオ関連のAPI
+paths:
+  /api/videos:
+    post:
+      summary: "新規ビデオ作成"
+      description: "ビデオを新規作成する"
+      operationId: "createVideo"
+      tags:
+        - videos
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VideoForm"
+      responses:
+        '201':
+          description: "Created"
+          headers:
+            location:
+              description: "作成されたリソースのURI"
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/VideoCreateResponse"
+  /api/videos/{id}:
+    get:
+      summary: "ビデオ取得"
+      description: "指定したIDのビデオを1件取得する"
+      tags:
+        - videos
+      operationId: selectVideo
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: "取得するビデオのID"
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/VideoResponse"
+        '404':
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/VideoNotFoundException"
+    patch:
+      summary: "ビデオ情報更新"
+      description: "指定されたビデオの情報を更新する"
+      operationId: "editVideo"
+      tags:
+        - videos
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: "更新するビデオのID"
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/VideoForm"
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/VideoUpdateResponse"
+        '404':
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/VideoNotFoundException"
+    delete:
+      summary: "ビデオ削除"
+      description: "指定されたidのビデオを削除する"
+      operationId: "deleteVideo"
+      tags:
+        - videos
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: "更新するビデオのID"
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: "No Content"
+        '404':
+          description: "Not Found"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/VideoNotFoundException"
+  /api/videos/search:
+    get:
+      summary: "ビデオ全件取得"
+      description: "指定したオプションのビデオが全件取得できる"
+      operationId: "ListVideos"
+      tags:
+        - videos
+      parameters:
+        - name: lang
+          in: query
+          required: false
+          description: "リストに含まれるビデオの言語"
+          schema:
+            type: string
+            example: "en"
+        - name: isFree
+          in: query
+          required: false
+          description: "リストに含まれるビデオが無料か有料か"
+          schema:
+            type: boolean
+            example: true
+      responses:
+        '200':
+          description: "OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/VideoResponse"
+components:
+  schemas:
+    VideoResponse:
+      type: object
+      properties:
+        id:
+          type: integer
+          description: "取得したビデオのID"
+          example: 1
+        title:
+          type: string
+          description: "取得したビデオのタイトル"
+          example: "The Web Developer Bootcamp"
+        instructor:
+          type: string
+          description: "取得したビデオの講師名"
+          example: "Colt"
+        language:
+          type: string
+          description: "取得したビデオの言語"
+          example: "en"
+        price:
+          type: integer
+          description: "取得したビデオの値段"
+          example: 27800
+    VideoForm:
+      type: object
+      properties:
+        title:
+          type: string
+          description: "ビデオのタイトル"
+          minLength: 1
+          maxLength: 100
+          nullable: false
+          example: "The Web Developer Bootcamp"
+        instructor:
+          type: string
+          description: "ビデオの講師"
+          minLength: 1
+          maxLength: 100
+          nullable: false
+          example: "Colt"
+        language:
+          type: string
+          description: "ビデオの言語"
+          minLength: 2
+          maxLength: 2
+          nullable: false
+          example: "en"
+        isFree:
+          type: boolean
+          description: "動画が無料であるか"
+          nullable: false
+          example: false
+        price:
+          type: string
+          description: "動画の値段"
+          pattern: "^[0-9]{0,9}$"
+          nullable: false
+          example: "27800"
+      required:
+        - title
+        - instructor
+        - language
+        - isFree
+        - price
+    VideoCreateResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: "ビデオリソースの作成が成功したことを明示する"
+          example: "video successfully created"
+        id:
+          type: integer
+          description: "作成されたビデオのID"
+          example: 1
+        title:
+          type: string
+          description: "作成されたビデオのタイトル"
+          example: "The Web Developer Bootcamp"
+        instructor:
+          type: string
+          description: "作成されたビデオの講師名"
+          example: "Colt"
+        language:
+          type: string
+          description: "作成されたビデオの言語"
+          example: "en"
+        isFree:
+          type: boolean
+          description: "作成されたビデオが無料であるか"
+          example: false
+        price:
+          type: integer
+          description: "作成されたビデオの値段"
+          example: 27800
+    VideoUpdateResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          description: "ビデオリソースの更新が成功したことを明示する"
+          example: "video successfully created"
+        title:
+          type: string
+          description: "更新されたビデオのタイトル"
+          example: "The Web Developer Bootcamp"
+        instructor:
+          type: string
+          description: "更新されたビデオの講師名"
+          example: "Colt"
+        language:
+          type: string
+          description: "更新されたビデオの言語"
+          example: "en"
+        isFree:
+          type: boolean
+          description: "更新されたビデオが無料であるか"
+          example: false
+        price:
+          type: integer
+          description: "更新されたビデオの値段"
+          example: 27800
+    VideoNotFoundException:
+      description: "指定されたリソースが存在しない"
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+          example: "2023-01-01T00:00:00.000000000+09:00"
+          description: "現在の時間"
+        status:
+          type: string
+          example: "404"
+          description: "レスポンスのステータスコード"
+        error:
+          type: string
+          example: "Not Found"
+          description: "エラーメッセージ"
+        message:
+          type: string
+          example: "ビデオID:99は見つかりませんでした"
+          description: "エラーメッセージ"
+        path:
+          type: string
+          example: "api/videos/99"
+          description: "リクエストされたリソースのパス"
