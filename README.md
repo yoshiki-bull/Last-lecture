@@ -58,6 +58,10 @@
                     └── VideoRepositoryImpl.java
 ```
 
+### [API仕様書(Swagger UI)](https://yoshiki-bull.github.io/Last-lecture/)
+
+- **[API仕様書をGitHub Pagesにホスティングするまでの手順](https://github.com/yoshiki-bull/Last-lecture/pull/23)**
+
 ### GitHub Actionsを用いた自動CI
 
 - **Event**
