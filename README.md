@@ -1,11 +1,15 @@
 # Javaコース最終課題
 
+[![codecov](https://codecov.io/gh/yoshiki-bull/Last-lecture/branch/main/graph/badge.svg?token=3HTE7KUY9C)](https://codecov.io/gh/yoshiki-bull/Last-lecture)
+
+[![My Skills](https://skillicons.dev/icons?i=java,spring,mysql,docker,idea&theme=light)](https://skillicons.dev)
+
 ## 要件
 - CRUD処理をすべて備えたREST APIを作成する
 - テストコードを作成する (単体テスト～結合テストまで)
 - 自動で単体テストを実行するCIを作成する (GitHub Actions)
 
-## 味
+## 独自実装
 - Record Classの使用[（リンク）](https://github.com/yoshiki-bull/Last-lecture-Java/pull/10#issue-1725112384)
 - 3層アーキテクチャに基づいた設計[(リンク)](https://github.com/yoshiki-bull/Last-lecture/pull/19#issue-1750970087)
 
@@ -21,11 +25,40 @@
 ## IDE
 - IntelliJ IDEA
 
+## 苦労したこと
+- **開発周りの基本的な技術の理解**  
+開発未経験であることはもちろんPCすらまともに扱う機会がなかったので  
+ターミナルやGitの扱い方、ファイルの管理方法といった基本的な所から学ぶ必要がありました。  
+そのため、Udemyや技術書など存分に活用して学習を進めてきました。  
+また、当スクールは自習がメインであるため自ずと調べる力が身につきました。  
+<br>
+- **エラー文の解読**  
+初めは読むことすらままならなかったエラー文も英語の意味から調べ、公式ドキュメントを積極的に参照するようにして  
+今では大抵のエラーに太刀打ちできるようになりました。  
+<br>
+
+- **Javaの理解**  
+技術書など読んでも中々腑に落ちなかったのですが、  
+資格学習に取り組んだことが構文や概念などを理解するのに大いに効果がありました。
+
+## 今後の展望
+- AWSを用いたインフラ環境の構築およびデプロイ
+- フロントサイドの実装
+- 複雑なデータベース設計
+- 実用的なWebアプリケーションの作成  
+
 ## 成果物
+
+### [API仕様書(Swagger UI)](https://yoshiki-bull.github.io/Last-lecture/)
+
+- **[API仕様書をGitHub Pagesにホスティングするまでの手順](https://github.com/yoshiki-bull/Last-lecture/pull/23)**
+
+![Swagger UI](images/document.png)
+
 
 ### アプリケーション概略図
 
-![Application-diagram](images/this333.png)
+![Application-diagram](images/diagram.png)
 
 ### ディレクトリ構造
 
@@ -41,8 +74,7 @@
             │   │   ├── VideoNotFoundException.java
             │   │   └── VideoNotFoundExceptionHandler.java
             │   ├── form
-            │   │   ├── CreateForm.java
-            │   │   └── UpdateForm.java
+            │   │   └── VideoForm.java
             │   └── response
             │       ├── VideoCreateResponse.java
             │       ├── VideoResponse.java
@@ -60,13 +92,8 @@
                 │   └── VideoMapper.java
                 └── repository
                     └── VideoRepositoryImpl.java
+
 ```
-
-### [API仕様書(Swagger UI)](https://yoshiki-bull.github.io/Last-lecture/)
-
-- **[API仕様書をGitHub Pagesにホスティングするまでの手順](https://github.com/yoshiki-bull/Last-lecture/pull/23)**
-
-![Swagger UI](images/document.png)
 
 ### GitHub Actionsを用いた自動CI
 
@@ -168,10 +195,10 @@ uses: codecov/codecov-action@v3
 <details>
 <summary>機能</summary>
 
-| 機能         | 説明                                                                                                                                        |
-|------------|-------------------------------------------------------------------------------------------------------------------------------------------|
-| Codecov    | テストカバレッジを収集しグラフやレポートとして可視化するためのサービス。 ![Codecov](images/codecov.png)                                                                       |
-| Codecovの利用 | このアクションは`build/reports/jacoco/test/jacocoTestReport.xml`から<br>テストカバレッジを収集し、Codecovにアップロードする。 ![Codecov result](images/codecov-result.png) |
+| 機能         | 説明                                                                                                                                                                                  |
+|------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Codecov    | テストカバレッジを収集しグラフやレポートとして可視化するためのサービス。 ![Codecov](images/codecov.png)                                                                                                                 |
+| Codecovの利用 | このアクションは`build/reports/jacoco/test/jacocoTestReport.xml`から<br>テストカバレッジを収集し、Codecovにアップロードする。<br>GitHubと連携させることでPR作成時にカバレッジの変化量を教えてくれる。 ![Codecov result](images/codecov-result.png) |
 </details>
 <br>
 
