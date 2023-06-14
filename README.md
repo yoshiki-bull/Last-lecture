@@ -29,18 +29,18 @@
 - **開発周りの基本的な技術の理解**  
 開発未経験であることはもちろんPCすらまともに扱う機会がなかったので  
 ターミナルやGitの扱い方、ファイルの管理方法といった基本的な所から学ぶ必要がありました。  
-そのため、Udemyや技術書など存分に活用して学習を進めてきました。  
-また、当スクールは自習がメインであるため自ずと調べる力が身につきました。  
+そのため、Udemyや技術書などを存分に活用して学習を進めてきました。  
 <br>
 
 - **エラー文の解読**  
-初めは読むことすらままならなかったエラー文も英語の意味から調べ、公式ドキュメントを積極的に参照するようにして  
-今では大抵のエラーに太刀打ちできるようになりました。  
+初めは読むことすらままならなかったエラー文も英語の意味から調べ、  
+公式ドキュメントを積極的に参照するようにして今では大抵のエラーに太刀打ちできるようになりました。  
 <br>
 
 - **Javaの理解**  
-技術書など読んでも中々腑に落ちなかったのですが、  
-資格学習に取り組んだことが構文や概念などを理解するのに大いに効果がありました。
+技術書など読んでも中々腹落ちできなかったのですが、  
+資格学習に取り組んだことで構文や概念などを理解することができました。
+<br>
 
 ## 今後の展望
 - AWSを用いたインフラ環境の構築およびデプロイ
@@ -95,6 +95,17 @@
                     └── VideoRepositoryImpl.java
 
 ```
+
+### テストコードを書く
+- **Serviceテスト**  
+  [テストコード](https://github.com/yoshiki-bull/Last-lecture/blob/main/src/test/java/com/udemy/videolist/domain/service/VideoServiceImplTest.java)
+- **Repositoryテスト**  
+  [テストコード](https://github.com/yoshiki-bull/Last-lecture/blob/main/src/test/java/com/udemy/videolist/infrastructure/mapper/VideoMapperTest.java)
+- **結合テスト**  
+  [テストコード](https://github.com/yoshiki-bull/Last-lecture/blob/main/src/test/java/com/udemy/videolist/integrationtest/VideoRestApiIntegrationTest.java)
+- **テストカバレッジ**
+
+![Codecov](images/codecov.png)
 
 ### GitHub Actionsを用いた自動CI
 
