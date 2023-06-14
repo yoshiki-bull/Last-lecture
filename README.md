@@ -56,10 +56,15 @@
 
 ![Swagger UI](images/document.png)
 
+---
 
 ### アプリケーション概略図
 
 ![Application-diagram](images/diagram.png)
+
+---
+
+---
 
 ### ディレクトリ構造
 
@@ -96,6 +101,8 @@
 
 ```
 
+---
+
 ### テストコードを書く
 - **Serviceテスト**  
   [テストコード](https://github.com/yoshiki-bull/Last-lecture/blob/main/src/test/java/com/udemy/videolist/domain/service/VideoServiceImplTest.java)
@@ -106,6 +113,8 @@
 - **テストカバレッジ**
 
 ![Codecov](images/codecov.png)
+
+---
 
 ### GitHub Actionsを用いた自動CI
 
