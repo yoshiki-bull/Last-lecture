@@ -5,9 +5,9 @@
 - テストコードを作成する (単体テスト～結合テストまで)
 - 自動で単体テストを実行するCIを作成する (GitHub Actions)
 
-## こだわり
+## 味
 - Record Classの使用[（リンク）](https://github.com/yoshiki-bull/Last-lecture-Java/pull/10#issue-1725112384)
-- 3層アーキテクチャに基づいた設計[(リンク)](https://terasolunaorg.github.io/guideline/current/ja/Overview/ApplicationLayering.html)
+- 3層アーキテクチャに基づいた設計[(リンク)](https://github.com/yoshiki-bull/Last-lecture/pull/19#issue-1750970087)
 
 ## 使用技術
 - Java 17.0.5
@@ -22,6 +22,10 @@
 - IntelliJ IDEA
 
 ## 成果物
+
+### アプリケーション概略図
+
+![Application-diagram](images/diagram.png)
 
 ### ディレクトリ構造
 
@@ -61,6 +65,8 @@
 ### [API仕様書(Swagger UI)](https://yoshiki-bull.github.io/Last-lecture/)
 
 - **[API仕様書をGitHub Pagesにホスティングするまでの手順](https://github.com/yoshiki-bull/Last-lecture/pull/23)**
+
+![Swagger UI](images/document.png)
 
 ### GitHub Actionsを用いた自動CI
 
@@ -128,10 +134,10 @@ uses: mikepenz/action-junit-report@v3
 <details>
 <summary>機能</summary>
 
-| 機能      | 説明                                                                               |
-|---------|----------------------------------------------------------------------------------|
-| Checks  | PRのChecksに結果を表示してくれる ![checks](images/checks.png)                                |
-| テスト失敗   | テスト失敗時に`Annotations`を生成し、<br>PR上でどのテストが失敗したのか教えてくれる ![failed](images/failed.png) |
+| 機能     | 説明                                                                               |
+|--------|----------------------------------------------------------------------------------|
+| Checks | PRのChecksに結果を表示してくれる ![checks](images/checks.png)                                |
+| テスト失敗時 | テスト失敗時に`Annotations`を生成し、<br>PR上でどのテストが失敗したのか教えてくれる ![failed](images/failed.png) |
 </details>
 <br>
 
@@ -162,10 +168,10 @@ uses: codecov/codecov-action@v3
 <details>
 <summary>機能</summary>
 
-| 機能         | 説明                                                                                           |
-|------------|----------------------------------------------------------------------------------------------|
-| Codecov    | テストカバレッジを収集しグラフやレポートとして可視化するためのサービス。                                                         |
-| Codecovの利用 | このアクションは`build/reports/jacoco/test/jacocoTestReport.xml`から<br>テストカバレッジを収集し、Codecovにアップロードする。 |
+| 機能         | 説明                                                                                                                                        |
+|------------|-------------------------------------------------------------------------------------------------------------------------------------------|
+| Codecov    | テストカバレッジを収集しグラフやレポートとして可視化するためのサービス。 ![Codecov](images/codecov.png)                                                                       |
+| Codecovの利用 | このアクションは`build/reports/jacoco/test/jacocoTestReport.xml`から<br>テストカバレッジを収集し、Codecovにアップロードする。 ![Codecov result](images/codecov-result.png) |
 </details>
 <br>
 
