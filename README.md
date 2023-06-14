@@ -38,7 +38,7 @@
 <br>
 
 - **Javaの理解**  
-技術書など読んでも中々腹落ちできなかったのですが、  
+技術書など読んでも中々腹落ちしなかったのですが、  
 資格学習に取り組んだことで構文や概念などを理解することができました。
 
 ## 今後の展望
@@ -100,7 +100,7 @@
 
 ---
 
-### テストコードを書く
+### テストコード
 - **Serviceテスト**  
   [テストコード](https://github.com/yoshiki-bull/Last-lecture/blob/main/src/test/java/com/udemy/videolist/domain/service/VideoServiceImplTest.java)
 - **Repositoryテスト**  
