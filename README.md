@@ -1,22 +1,23 @@
 # Video-API
 
-![Actions badge](https://github.com/yoshiki-bull/Video-API/actions/workflows/github-actions.yml/badge.svg)
+![Actions badge](https://github.com/yoshiki-bull/Video-API/actions/workflows/github-actions.yml/badge.svg)  
 
 [![codecov](https://codecov.io/gh/yoshiki-bull/Last-lecture/branch/main/graph/badge.svg?token=3HTE7KUY9C)](https://codecov.io/gh/yoshiki-bull/Last-lecture)
 
-[![My Skills](https://skillicons.dev/icons?i=java,spring,mysql,docker,aws,idea&theme=light&perline=3)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=java,spring,mysql&theme=light)](https://skillicons.dev)  
+
+[![My Skills](https://skillicons.dev/icons?i=docker,aws,idea)](https://skillicons.dev)  
+
 
 ## API概要
 Udemyを参考にした動画教材のCRUD処理を想定したRESTAPIです。
 
 ## 要件
-- CRUD処理をすべて備えたREST APIを作成する
-- テストコードを作成する (単体テスト～結合テストまで)
-- 自動で単体テストを実行するCIを作成する (GitHub Actions)
-
-## 独自実装
-- Record Classの使用[（リンク）](https://github.com/yoshiki-bull/Last-lecture-Java/pull/10#issue-1725112384)
-- 3層アーキテクチャに基づいた設計[(リンク)](https://github.com/yoshiki-bull/Last-lecture/pull/19#issue-1750970087)
+- CRUD処理をすべて備えたREST APIの作成
+- テストコードを書く
+- テストコードを自動で実行するCIの構築(GitHub Actions)
+- 3層アーキテクチャに基づいた設計 [(PRリンク)](https://github.com/yoshiki-bull/Last-lecture/pull/19#issue-1750970087)  
+- APIをEC2上にデプロイする [(PRリンク)](https://github.com/yoshiki-bull/Video-API/pull/25#issue-1761688461)
 
 ## 使用技術
 - Java 17.0.5
@@ -34,21 +35,22 @@ Udemyを参考にした動画教材のCRUD処理を想定したRESTAPIです。
 ## IDE
 - IntelliJ IDEA
 
-## 苦労したこと
-- **開発周りの基本的な技術の理解**  
-開発未経験であることはもちろんPCすらまともに扱う機会がなかったので  
-ターミナルやGitの扱い方、ファイルの管理方法といった基本的な所から学ぶ必要がありました。  
-そのため、Udemyや技術書などを存分に活用して学習を進めてきました。  
+## 今後に向けての気づき・学び
+- **英語スキルは必須**  
+プログラミング学習およびシステム開発の難しさは、英語や聞いたこともないカタカナが頻出するところだと思います。  
+英語ができれば、単語からある程度イメージができるものを英語ができなければいちいち英語の意味から調べる手間が増えます。  
+「公式ドキュメントを読む」「エラー文を読む」「エラーを解決するためにトラブルシューティング方法を調べる」  
+これらは開発をする上で必ず求められると思いますし、英語が読めなければ困る場面がでてくると思います。  
+なので、英語も勉強してます🙋‍♂️  
 <br>
 
-- **エラー文の解読**  
-初めは読むことすらままならなかったエラー文も英語の意味から調べ、  
-公式ドキュメントを積極的に参照するようにして今では大抵のエラーに太刀打ちできるようになりました。  
-<br>
-
-- **Javaの理解**  
-技術書など読んでも中々腹落ちしなかったのですが、  
-資格学習に取り組んだことで構文や概念などを理解することができました。
+- **やればできる**  
+私はこのシンプルなAPIを作るだけでもかなり苦労しました。  
+中でも「テストコードを書く」「CIの構築」「APIのデプロイ」は単にデータを処理するコードを書くこととはまた毛色が異なり、  
+スタブやモック、アサートといった新しいキーワード、様々なライブラリの活用、新しいツールの使用など  
+学習することが多く理解に苦しみ、詰まる時も多々ありました。  
+しかし、そういった状況下の中でも一旦状況を整理しキーワードを洗い出すなどして乗り越えてきました。  
+また、見当もつかないような場合には人を頼ることも大切だと考えてます。
 
 ## 今後の展望
 - フロントサイドの実装
@@ -67,13 +69,13 @@ Udemyを参考にした動画教材のCRUD処理を想定したRESTAPIです。
 
 ### インフラ構成図
 
-<img src="images/infrastructure.png" width="45%">
+<img src="images/infrastructure.png" width="40%">
 
 ---
 
-### アプリケーション概略図(ローカル)
+### アプリケーション概略図
 
-![Application diagram](images/diagram.png)
+![Application diagram](images/app-diagram.png)
 
 ---
 
