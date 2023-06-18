@@ -72,8 +72,6 @@ Udemyをモチーフとした動画教材のCRUD処理を想定したRESTAPIで�
 
 <img src="images/infrastructure.png" width="50%">
 
-![Infrastructure](images/infrastructure.png)
-
 ---
 
 ### アプリケーション概略図
