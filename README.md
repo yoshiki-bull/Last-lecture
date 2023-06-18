@@ -10,7 +10,7 @@
 
 
 ## API概要
-Udemyを参考にした動画教材のCRUD処理を想定したRESTAPIです。
+Udemyをモチーフとした動画教材のCRUD処理を想定したRESTAPIです。
 
 ## 要件
 - CRUD処理をすべて備えたREST APIの作成
@@ -55,6 +55,7 @@ Udemyを参考にした動画教材のCRUD処理を想定したRESTAPIです。
 ## 今後の展望
 - フロントサイドの実装
 - 複雑なデータベース設計
+- HTTPSを用いたデプロイ
 - 実用的なWebアプリケーションの作成
 
 ## 成果物
@@ -69,7 +70,9 @@ Udemyを参考にした動画教材のCRUD処理を想定したRESTAPIです。
 
 ### インフラ構成図
 
-<img src="images/infrastructure.png" width="40%">
+<img src="images/infrastructure.png" width="50%">
+
+![Infrastructure](images/infrastructure.png)
 
 ---
 
