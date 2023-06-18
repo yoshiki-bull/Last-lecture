@@ -70,7 +70,7 @@ Udemyをモチーフとした動画教材のCRUD処理を想定したRESTAPIで�
 
 ### インフラ構成図
 
-<img src="images/infrastructure.png" width="50%">
+<img src="images/infrastructure.png" width="45%">
 
 ---
 
