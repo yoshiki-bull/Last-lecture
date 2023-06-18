@@ -9,10 +9,10 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: pass
       MYSQL_DATABASE: video_list
-      MYSQL_USER: user
+      MYSQL_USER: admin
       MYSQL_PASSWORD: pass
     ports:
-      - 3307:3306
+      - 3306:3306
     volumes:
       - $PWD/sql:/docker-entrypoint-initdb.d
 volumes:
