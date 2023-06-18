@@ -1,5 +1,7 @@
 # Video-API
 
+![Actions badge](https://github.com/yoshiki-bull/Video-API/actions/workflows/github-actions.yml/badge.svg)
+
 [![codecov](https://codecov.io/gh/yoshiki-bull/Last-lecture/branch/main/graph/badge.svg?token=3HTE7KUY9C)](https://codecov.io/gh/yoshiki-bull/Last-lecture)
 
 [![My Skills](https://skillicons.dev/icons?i=java,spring,mysql,docker,aws,idea&theme=light&perline=3)](https://skillicons.dev)
@@ -65,11 +67,13 @@ Udemyを参考にした動画教材のCRUD処理を想定したRESTAPIです。
 
 ### インフラ構成図
 
-<img src="images/infrastructure.png" width="50%">
+<img src="images/infrastructure.png" width="45%">
 
-### アプリケーション概略図
+---
 
-![Application-diagram](images/diagram.png)
+### アプリケーション概略図(ローカル)
+
+![Application diagram](images/diagram.png)
 
 ---
 

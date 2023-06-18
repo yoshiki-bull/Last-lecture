@@ -1,4 +1,4 @@
-name: Test Report, Checkstyle, SpotBugs, Notify in Discord Codecov CI
+name: JUnit tests/Test report/Codecov/Checkstyle/SpotBugs CI
 
 on:
   push:
