@@ -1,8 +1,11 @@
-# Javaコース最終課題
+# Video-API
 
 [![codecov](https://codecov.io/gh/yoshiki-bull/Last-lecture/branch/main/graph/badge.svg?token=3HTE7KUY9C)](https://codecov.io/gh/yoshiki-bull/Last-lecture)
 
-[![My Skills](https://skillicons.dev/icons?i=java,spring,mysql,docker,idea&theme=light)](https://skillicons.dev)
+[![My Skills](https://skillicons.dev/icons?i=java,spring,mysql,docker,aws,idea&theme=light&perline=3)](https://skillicons.dev)
+
+## API概要
+Udemyを参考にした動画教材のCRUD処理を想定したRESTAPIです。
 
 ## 要件
 - CRUD処理をすべて備えたREST APIを作成する
@@ -21,6 +24,10 @@
   - MyBatis 3.0.0
 - Docker
   - MySQL 8.0
+- AWS
+  - VPC
+  - EC2
+  - RDS
 
 ## IDE
 - IntelliJ IDEA
@@ -42,20 +49,23 @@
 資格学習に取り組んだことで構文や概念などを理解することができました。
 
 ## 今後の展望
-- AWSを用いたインフラ環境の構築およびデプロイ
 - フロントサイドの実装
 - 複雑なデータベース設計
 - 実用的なWebアプリケーションの作成
 
 ## 成果物
 
-### [API仕様書(Swagger UI)](https://yoshiki-bull.github.io/Last-lecture/)
+### [API仕様書(Swagger UI)](https://yoshiki-bull.github.io/Video-API/)
 
 - **[API仕様書をGitHub Pagesにホスティングするまでの手順](https://github.com/yoshiki-bull/Last-lecture/pull/23)**
 
 ![Swagger UI](images/document.png)
 
 ---
+
+### インフラ構成図
+
+<img src="images/infrastructure.png" width="50%">
 
 ### アプリケーション概略図
 
