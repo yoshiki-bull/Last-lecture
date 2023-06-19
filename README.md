@@ -2,7 +2,7 @@
 
 ![Actions badge](https://github.com/yoshiki-bull/Video-API/actions/workflows/github-actions.yml/badge.svg)  
 
-[![codecov](https://codecov.io/gh/yoshiki-bull/Last-lecture/branch/main/graph/badge.svg?token=3HTE7KUY9C)](https://codecov.io/gh/yoshiki-bull/Last-lecture)
+[![codecov](https://codecov.io/gh/yoshiki-bull/Video-API/branch/main/graph/badge.svg?token=3HTE7KUY9C)](https://codecov.io/gh/yoshiki-bull/Video-API)
 
 [![My Skills](https://skillicons.dev/icons?i=java,spring,mysql&theme=light)](https://skillicons.dev)  
 
