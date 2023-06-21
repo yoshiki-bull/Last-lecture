@@ -124,7 +124,7 @@ Udemyをモチーフとした動画教材のCRUD処理を想定したREST APIで
 - **Serviceテスト**  
   [テストコード](https://github.com/yoshiki-bull/Last-lecture/blob/main/src/test/java/com/udemy/videolist/domain/service/VideoServiceImplTest.java)
 - **Repositoryテスト**  
-  [テストコード](https://github.com/yoshiki-bull/Last-lecture/blob/main/src/test/java/com/udemy/videolist/infrastructure/mapper/VideoMapperTest.java)
+  [テストコード](https://github.com/yoshiki-bull/Video-API/blob/main/src/test/java/com/udemy/videolist/infrastructure/repository/VideoRepositoryTest.java)
 - **結合テスト**  
   [テストコード](https://github.com/yoshiki-bull/Last-lecture/blob/main/src/test/java/com/udemy/videolist/integrationtest/VideoRestApiIntegrationTest.java)
 - **テストカバレッジ**
