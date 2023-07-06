@@ -13,7 +13,7 @@
 Udemyをモチーフとした動画教材のCRUD処理を想定したRESTful APIです。
 
 ## 要件
-- CRUD処理をすべて備えたREST APIの作成
+- CRUD処理をすべて備えたRESTful APIの作成
 - テストコードを書く
 - テストコードを自動で実行するCIの構築 (GitHub Actions)
 - 3層アーキテクチャに基づいた設計 
