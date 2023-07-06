@@ -10,14 +10,14 @@
 
 
 ## API概要
-Udemyをモチーフとした動画教材のCRUD処理を想定したREST APIです。
+Udemyをモチーフとした動画教材のCRUD処理を想定したRESTful APIです。
 
 ## 要件
 - CRUD処理をすべて備えたREST APIの作成
 - テストコードを書く
-- テストコードを自動で実行するCIの構築(GitHub Actions)
-- 3層アーキテクチャに基づいた設計 [(PRリンク)](https://github.com/yoshiki-bull/Last-lecture/pull/19#issue-1750970087)  
-- APIをEC2上にデプロイする [(PRリンク)](https://github.com/yoshiki-bull/Video-API/pull/25#issue-1761688461)
+- テストコードを自動で実行するCIの構築 (GitHub Actions)
+- 3層アーキテクチャに基づいた設計 
+- APIをEC2上にデプロイする 
 
 ## 使用技術
 - Java 17.0.5
@@ -31,6 +31,8 @@ Udemyをモチーフとした動画教材のCRUD処理を想定したREST APIで
   - VPC
   - EC2
   - RDS
+  - ACM
+  - Route53
 
 ## IDE
 - IntelliJ IDEA
@@ -58,8 +60,8 @@ Udemyをモチーフとした動画教材のCRUD処理を想定したREST APIで
 ## 今後の展望
 - フロントサイドの実装
 - 複雑なデータベース設計
-- HTTPS (Route53, ACM) を用いたデプロイ
 - 実用的なWebアプリケーションの作成
+- SAA 取得！
 
 ## 成果物
 
@@ -71,9 +73,12 @@ Udemyをモチーフとした動画教材のCRUD処理を想定したREST APIで
 
 ---
 
-### インフラ構成図 [(PRリンク)](https://github.com/yoshiki-bull/Video-API/pull/25#issue-1761688461)
+### インフラ構成図 
 
-<img src="images/infrastructure.png" width="45%">
+- [APIをEC2上にデプロイする](https://github.com/yoshiki-bull/Video-API/pull/25)
+- [WebサーバをHTTPS化する](https://github.com/yoshiki-bull/Video-API/pull/26)
+
+<img src="images/infrastructure.png" width="50%">
 
 ---
 
